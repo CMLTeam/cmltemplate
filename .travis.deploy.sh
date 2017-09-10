@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -x
+
 USER=apps1
 SERV=prod.cmlteam.com
 APP=ds-infra
