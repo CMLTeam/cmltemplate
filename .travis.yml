@@ -6,4 +6,8 @@ branches:
   only:
    - release
 
+cache:
+  directories:
+  - $HOME/.m2 # speed up maven
+
 #sudo: false # route your build to the container-based infrastructure for a faster build
