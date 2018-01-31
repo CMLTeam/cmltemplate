@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
+APP=cmltemplate # TODO rename
 USER=apps1
 SERV=prod.cmlteam.com
-APP=cmltemplate
 
 echo
 echo "BUILD..."
 echo
 
-mvn clean package -DskipTests
+./mvnw clean package -DskipTests
 
 echo
 echo "DEPLOY..."
