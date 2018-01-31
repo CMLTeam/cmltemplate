@@ -1,12 +1,12 @@
-package com.cmlteam.ds;
+package com.cmlteam.cmltemplate;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DsApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DsApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 }
