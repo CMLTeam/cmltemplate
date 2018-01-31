@@ -22,6 +22,10 @@ public class MainController {
         this.sampleService = sampleService;
     }
 
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String test() {
+        return "Hello CML!";
+    }
     @RequestMapping(value = "/testws", method = RequestMethod.GET)
     public String testws() {
         RestTemplate template = new RestTemplate();
