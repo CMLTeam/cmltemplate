@@ -38,8 +38,15 @@ git mv $TPL.conf $proj_name.conf
 
 echo "Processing sources..."
 git mv src/main/java/com/cmlteam/$TPL src/main/java/com/cmlteam/$proj_name
+for f in $(find src/ -type f -name '*.java')
+do
+    echo "Processing $f ..."
+    sed -i "s/package com.cmlteam.$TPL/package com.cmlteam.$proj_name/g" $f
+done
 
+echo
 echo "DONE! Please check the change carefully before committing!"
-echo "Also it's advised to remove this script ($0) when done."
+echo "Also it's advised to remove this script ($0) if all's good."
+echo
 
 
