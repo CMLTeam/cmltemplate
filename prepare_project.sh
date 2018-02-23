@@ -13,6 +13,9 @@ pom.xml
 src/main/resources/application.properties
 "
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd $DIR
+
 for f in $FILES
 do
     echo "Processing $f ..."
@@ -23,15 +26,18 @@ do
     fi
 done
 
-echo "Processing $TPL.conf ..."
-git mv $TPL.conf $proj_name.conf
-
 echo "Processing README.md ..."
 echo "# $proj_name
 
 #### Description
 $proj_descr
 " > README.md
+
+echo "Processing $TPL.conf ..."
+git mv $TPL.conf $proj_name.conf
+
+echo "Processing sources..."
+git mv src/main/java/com/cmlteam/$TPL src/main/java/com/cmlteam/$proj_name
 
 echo "DONE! Please check the change carefully before committing!"
 echo "Also it's advised to remove this script ($0) when done."
