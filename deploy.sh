@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-APP=cmltemplate # TODO rename
+APP=cmltemplate
 USER=apps1
 SERV=prod.cmlteam.com
 
