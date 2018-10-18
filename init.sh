@@ -28,7 +28,7 @@ download() {
     fi
 
     local tmpzip=/tmp/cmltemplate.zip
-    curl -o "$tmpzip" "$LATEST_ZIP"
+    curl -o "$tmpzip" -SL "$LATEST_ZIP"
     unzip "$tmpzip" -d "$proj_path"
     rm -f "$tmpzip"
 }
