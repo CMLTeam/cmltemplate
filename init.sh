@@ -14,23 +14,28 @@ declare proj_descr
 $read_cmd -p "Please provide the project name: " proj_name
 $read_cmd -p "Please enter project description: " proj_descr
 
+proj_path="$(pwd)/$proj_name"
+if [ -e "$proj_path" ]
+then
+    fail "Path $proj_path exists already."
+fi
+
 fail() {
     >&2 echo $1
     exit 1
 }
 
 download() {
-    local proj_path
-    proj_path="$(pwd)/$proj_name"
-    if [ -e "$proj_path" ]
-    then
-        fail "Path $proj_path exists already."
-    fi
+    local tmp_zip=/tmp/cmltemplate.zip
+    curl -o "$tmp_zip" -SL "$LATEST_ZIP"
 
-    local tmpzip=/tmp/cmltemplate.zip
-    curl -o "$tmpzip" -SL "$LATEST_ZIP"
-    unzip "$tmpzip" -d "$proj_path"
-    rm -f "$tmpzip"
+    local tmp_dir=/tmp/cmltemplate_out
+    mkdir "$tmp_dir"
+    unzip "$tmp_zip" -d "$tmp_dir"
+    mv "$tmp_dir/cmltemplate-master" "$proj_path"
+
+    rm -f "$tmp_zip"
+    rmdir "$tmp_dir"
 }
 
 prepare_project() {
@@ -81,4 +86,9 @@ prepare_project() {
     echo
 }
 
-download
+do_work() {
+    download
+}
+
+# defense against partial download
+do_work
