@@ -26,12 +26,14 @@ public class MainController {
     public String test() {
         return "Hello CML!";
     }
+
     @RequestMapping(value = "/testws", method = RequestMethod.GET)
     public String testws() {
         RestTemplate template = new RestTemplate();
         ServerStatus status = template.getForObject("https://l2c1x1.com/services/misc/server-stats", ServerStatus.class);
         return "" + status.totalAccounts;
     }
+
     @RequestMapping(value = "/testdb", method = RequestMethod.GET)
     public String testdb() {
         return sampleService.getDbVersion();
