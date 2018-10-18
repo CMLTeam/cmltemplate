@@ -14,16 +14,16 @@ declare proj_descr
 $read_cmd -p "Please provide the project name: " proj_name
 $read_cmd -p "Please enter project description: " proj_descr
 
+fail() {
+    >&2 echo $1
+    exit 1
+}
+
 proj_path="$(pwd)/$proj_name"
 if [ -e "$proj_path" ]
 then
     fail "Path $proj_path exists already."
 fi
-
-fail() {
-    >&2 echo $1
-    exit 1
-}
 
 download() {
     local tmp_zip=/tmp/cmltemplate.zip
