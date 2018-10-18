@@ -27,30 +27,39 @@ fi
 
 download() {
     local tmp_zip=/tmp/cmltemplate.zip
+
+    echo
+    echo "Downloading..."
+    echo
+
     curl -o "$tmp_zip" -SL "$LATEST_ZIP"
 
     local tmp_dir=/tmp/cmltemplate_out
     mkdir "$tmp_dir"
-    unzip "$tmp_zip" -d "$tmp_dir"
+
+    echo
+    echo "Extracting..."
+    echo
+
+    unzip -qq "$tmp_zip" -d "$tmp_dir"
     mv "$tmp_dir/cmltemplate-master" "$proj_path"
 
     rm -f "$tmp_zip"
     rmdir "$tmp_dir"
 }
 
-prepare_project() {
+prepare() {
     echo "Processing..."
 
-    TPL=cmltemplate
-    FILES="
+    local TPL=cmltemplate
+    local FILES="
     create_db.sh
     deploy.sh
     pom.xml
     src/main/resources/application.properties
     "
 
-    DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-    cd $DIR
+    cd "$proj_path"
 
     for f in $FILES
     do
@@ -70,10 +79,10 @@ prepare_project() {
     " > README.md
 
     echo "Processing $TPL.conf ..."
-    git mv $TPL.conf $proj_name.conf
+    mv $TPL.conf $proj_name.conf
 
     echo "Processing sources..."
-    git mv src/main/java/com/cmlteam/$TPL src/main/java/com/cmlteam/$proj_name
+    mv src/main/java/com/cmlteam/$TPL src/main/java/com/cmlteam/$proj_name
     for f in $(find src/ -type f -name '*.java')
     do
         echo "Processing $f ..."
@@ -81,13 +90,13 @@ prepare_project() {
     done
 
     echo
-    echo "DONE! Please check the change carefully before committing!"
-    echo "Also it's advised to remove this script ($0) if all's good."
+    echo "Congrats! Your project is ready to work."
     echo
 }
 
 do_work() {
     download
+    prepare
 }
 
 # defense against partial download
