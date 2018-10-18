@@ -4,9 +4,15 @@ set -e
 
 LATEST_ZIP=https://github.com/CMLTeam/cmltemplate/archive/master.zip
 
+exec 3<>/dev/tty
+read_cmd="read -u 3"
+
+declare proj_name
+declare proj_descr
+
 # TODO add validation to proj_name - should be alnum + underscore
-read -p "Please provide the project name: " proj_name
-read -p "Please enter project description: " proj_descr
+$read_cmd -p "Please provide the project name: " proj_name
+$read_cmd -p "Please enter project description: " proj_descr
 
 fail() {
     >&2 echo $1
