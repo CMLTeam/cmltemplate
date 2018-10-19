@@ -61,6 +61,8 @@ prepare() {
 
     cd "$proj_path"
 
+    rm init.sh
+
     for f in $FILES
     do
         echo "Processing $f ..."
