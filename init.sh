@@ -32,7 +32,7 @@ download() {
     echo "Downloading..."
     echo
 
-    curl -o "$tmp_zip" -sSL "$LATEST_ZIP"
+    curl -sSL -o "$tmp_zip" "$LATEST_ZIP"
 
     local tmp_dir=/tmp/cmltemplate_out
     mkdir "$tmp_dir"
