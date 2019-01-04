@@ -71,6 +71,12 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.4</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>com.github.xonixx</groupId>
 			<artifactId>java-utils</artifactId>
 			<version>v0.9</version>

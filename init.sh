@@ -2,7 +2,7 @@
 
 set -e
 
-LATEST_ZIP=https://github.com/CMLTeam/cmltemplate/archive/master.zip
+LATEST_ZIP=https://github.com/CMLTeam/cmltemplate/archive/master.zip?$(date +"%T")
 
 exec 3<>/dev/tty
 read_cmd="read -u 3"
