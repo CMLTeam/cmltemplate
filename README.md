@@ -8,4 +8,6 @@ Run
 curl -sSL https://raw.githubusercontent.com/CMLTeam/cmltemplate/master/init.sh?$(date +"%T") | bash
 ```
 
-and follow instructions.
+and follow instructions. 
+
+The project folder with scaffolded code will be created in current folder. 
