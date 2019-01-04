@@ -20,7 +20,7 @@ fail() {
 }
 
 proj_path="$(pwd)/$proj_name"
-if [ -e "$proj_path" ]
+if [[ -e "$proj_path" ]]
 then
     fail "Path $proj_path exists already."
 fi
@@ -56,7 +56,7 @@ prepare() {
     create_db.sh
     deploy.sh
     pom.xml
-    src/main/resources/application.properties
+    src/main/resources/application.yml
     "
 
     cd "$proj_path"
@@ -67,7 +67,7 @@ prepare() {
     do
         echo "Processing $f ..."
         sed -i "s/$TPL/$proj_name/g" $f
-        if [ "$f" == 'pom.xml' ]
+        if [[ "$f" == 'pom.xml' ]]
         then
             sed -i "s#<description>CML Spring Boot Template</description>#<description>$proj_descr</description>#g" $f
         fi
