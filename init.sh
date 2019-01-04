@@ -11,7 +11,7 @@ declare proj_name
 declare proj_descr
 
 # TODO add validation to proj_name - should be alnum + underscore
-$read_cmd -p "Please provide the project name: " proj_name
+$read_cmd -p "Please provide the project name (alnum + underscore only): " proj_name
 $read_cmd -p "Please enter project description: " proj_descr
 
 fail() {
