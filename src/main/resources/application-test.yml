@@ -3,4 +3,4 @@ server:
   port: 8080
 
 elk:
-  application: cmltemplate-prod
+  application: cmltemplate-test
