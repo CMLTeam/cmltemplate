@@ -21,6 +21,10 @@ spring:
     enabled: false # manual
     change-log: classpath:changelog.xml
 
+#logging:
+#  level:
+#    org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: TRACE
+
 liquibase:
   # TODO change the value below to true to enable liquibase
   manual: false
