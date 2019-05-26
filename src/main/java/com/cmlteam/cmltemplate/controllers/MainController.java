@@ -2,6 +2,7 @@ package com.cmlteam.cmltemplate.controllers;
 
 import com.cmlteam.cmltemplate.model.ServerStatus;
 import com.cmlteam.cmltemplate.services.SampleService;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,36 +17,39 @@ import java.util.Map;
 @Slf4j
 public class MainController {
 
-  private final SampleService sampleService;
+    private final SampleService sampleService;
 
-  @Autowired
-  public MainController(SampleService sampleService) {
-    this.sampleService = sampleService;
-  }
+    @Autowired
+    public MainController(SampleService sampleService) {
+        this.sampleService = sampleService;
+    }
 
-  @RequestMapping(value = "/", method = RequestMethod.GET)
-  public String test() {
-    return "Hello CML!";
-  }
+    @ApiOperation(value = "Test GET endpoint")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String test() {
+        return "Hello CML!";
+    }
 
-  @RequestMapping(value = "/testws", method = RequestMethod.GET)
-  public String testws() {
-    RestTemplate template = new RestTemplate();
-    ServerStatus status =
-        template.getForObject("https://l2c1x1.com/services/misc/server-stats", ServerStatus.class);
-    return "" + status.totalAccounts;
-  }
+    @RequestMapping(value = "/testws", method = RequestMethod.GET)
+    public String testws() {
+        RestTemplate template = new RestTemplate();
+        ServerStatus status =
+                template.getForObject("https://l2c1x1.com/services/misc/server-stats", ServerStatus.class);
+        return "" + status.totalAccounts;
+    }
 
-  @RequestMapping(value = "/testdb", method = RequestMethod.GET)
-  public String testdb() {
-    return sampleService.getDbVersion();
-  }
+    @ApiOperation(value = "Show the DB version")
+    @RequestMapping(value = "/testdb", method = RequestMethod.GET)
+    public String testdb() {
+        return sampleService.getDbVersion();
+    }
 
-  @PostMapping(value = "/testpost")
-  public Map testPost(@RequestBody Map payload) {
-    log.info("Test POST: {}", payload);
-    HashMap res = new HashMap();
-    res.put("success", true);
-    return res;
-  }
+    @ApiOperation(value = "Test POST endpoint")
+    @PostMapping(value = "/testpost")
+    public Map testPost(@RequestBody Map payload) {
+        log.info("Test POST: {}", payload);
+        HashMap res = new HashMap();
+        res.put("success", true);
+        return res;
+    }
 }
