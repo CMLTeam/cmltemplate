@@ -13,10 +13,14 @@ spring:
     minIdle: 2
     initialSize: 5
     removeAbandoned: true
+  jpa:
+    hibernate:
+      ddl-auto: update
 
   liquibase:
-    # TODO remove line below to enable liquibase
-    enabled: false
+    enabled: false # manual
+    # TODO change the value below to true to enable liquibase
+    manual: false
     change-log: classpath:changelog.xml
 
 logRestRequestWebInterceptor:

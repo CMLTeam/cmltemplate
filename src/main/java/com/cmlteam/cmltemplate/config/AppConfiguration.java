@@ -1,4 +1,4 @@
-package com.cmlteam.cmltemplate;
+package com.cmlteam.cmltemplate.config;
 
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.aop.interceptor.SimpleAsyncUncaughtExceptionHandler;
@@ -58,7 +58,7 @@ public class AppConfiguration implements AsyncConfigurer, SchedulingConfigurer {
         taskRegistrar.setScheduler(taskExecutor());
     }
 
-    @Bean(destroyMethod="shutdown")
+    @Bean(destroyMethod = "shutdown")
     public Executor taskExecutor() {
         return Executors.newScheduledThreadPool(10);
     }
