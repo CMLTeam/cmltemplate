@@ -15,7 +15,7 @@ import javax.sql.DataSource;
  * The purpose here is to make Liquibase run AFTER Hibernate's hbm2ddl
  */
 @Configuration
-@ConditionalOnProperty("spring.liquibase.manual")
+@ConditionalOnProperty("liquibase.manual")
 public class LiquibaseConfig {
     private final DataSource dataSource;
 

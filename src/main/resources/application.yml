@@ -19,9 +19,11 @@ spring:
 
   liquibase:
     enabled: false # manual
-    # TODO change the value below to true to enable liquibase
-    manual: false
     change-log: classpath:changelog.xml
+
+liquibase:
+  # TODO change the value below to true to enable liquibase
+  manual: false
 
 logRestRequestWebInterceptor:
   enabled: true
