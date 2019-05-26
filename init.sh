@@ -57,6 +57,8 @@ prepare() {
     deploy.sh
     pom.xml
     src/main/resources/application.yml
+    src/main/resources/application-test.yml
+    src/main/resources/application-prod.yml
     "
 
     cd "$proj_path"
