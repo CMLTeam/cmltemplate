@@ -32,6 +32,13 @@ liquibase:
 logRestRequestWebInterceptor:
   enabled: true
 
+s3:
+  bucket: bucket-name-tbd
+  accessKey: EXTERNAL
+  secretKey: EXTERNAL
+  region: us-west-1
+  endpoint: https://s3.us-west-1.wasabisys.com
+
 elk:
   host: elk.cmlteam.com
   port: 10443

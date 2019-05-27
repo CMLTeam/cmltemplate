@@ -102,6 +102,12 @@
             <artifactId>springfox-swagger2</artifactId>
             <version>${swagger-version}</version>
         </dependency>
+        <dependency>
+            <!-- we need this 'coz the v2 lacks pre-signed -->
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-s3</artifactId>
+            <version>1.11.560</version>
+        </dependency>
     </dependencies>
 
     <build>
