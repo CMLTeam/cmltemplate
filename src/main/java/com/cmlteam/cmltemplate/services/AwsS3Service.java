@@ -86,7 +86,7 @@ public class AwsS3Service {
    * @param bucket bucket name
    * @throws SdkClientException when deletion failed
    */
-  public void removeFromS3(String key, String bucket) throws SdkClientException {
+  public void removeFromS3(String key, String bucket) {
     try {
       s3.deleteObject(new DeleteObjectRequest(bucket, key));
     } catch (SdkClientException e) {
