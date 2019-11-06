@@ -23,12 +23,12 @@ public class MainController {
   }
 
   @ApiOperation(value = "Test GET endpoint")
-  @RequestMapping(value = "/", method = RequestMethod.GET)
+  @GetMapping
   public String test() {
     return "Hello CML!";
   }
 
-  @RequestMapping(value = "/testws", method = RequestMethod.GET)
+  @GetMapping("testws")
   public String testws() {
     RestTemplate template = new RestTemplate();
     ServerStatus status =
@@ -37,7 +37,7 @@ public class MainController {
   }
 
   @ApiOperation(value = "Show the DB version")
-  @RequestMapping(value = "/testdb", method = RequestMethod.GET)
+  @GetMapping("testdb")
   public String testdb() {
     return sampleService.getDbVersion();
   }
