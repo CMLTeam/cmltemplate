@@ -33,7 +33,7 @@ public class MainController {
     RestTemplate template = new RestTemplate();
     ServerStatus status =
         template.getForObject("https://l2c1x1.com/services/misc/server-stats", ServerStatus.class);
-    return "" + status.totalAccounts;
+    return "" + status.getTotalAccounts();
   }
 
   @ApiOperation(value = "Show the DB version")
