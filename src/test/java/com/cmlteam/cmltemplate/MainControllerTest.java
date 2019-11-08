@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import javax.sql.DataSource;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.text.MatchesPattern.matchesPattern;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -37,6 +38,14 @@ public class MainControllerTest {
 
   @Test
   public void simpleGetTest() throws Exception {
+    mockMvc
+        .perform(get("/test"))
+        .andExpect(status().isOk())
+        .andExpect(content().string(equalTo("Hello CML!")));
+  }
+
+  @Test
+  public void simpleWsTest() throws Exception {
     mockMvc
         .perform(get("/testws"))
         .andExpect(status().isOk())
