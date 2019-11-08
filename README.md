@@ -1,9 +1,9 @@
 # cmltemplate
 
-#### Usage
+## Usage
 Use this template as a base for your Spring Boot app @ CML
 
-Run
+### Run
 ```bash
 curl -sSL "https://raw.githubusercontent.com/CMLTeam/cmltemplate/master/init.sh?$(date +%T)" | bash
 ```
@@ -11,3 +11,10 @@ curl -sSL "https://raw.githubusercontent.com/CMLTeam/cmltemplate/master/init.sh?
 and follow instructions. 
 
 The project folder with scaffolded code will be created in current folder. 
+
+### Analyze with CML SonarQube instance
+First, log into [SonarQube UI](https://sonar.cmlteam.com) and generate an access token for the project.
+Then, run this command in project root folder:
+```bash
+mvn clean install sonar:sonar -Dsonar-login-token=TOKEN
+```
