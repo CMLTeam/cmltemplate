@@ -17,4 +17,10 @@ First, log into [SonarQube UI](https://sonar.cmlteam.com) and generate an access
 Then, run this command in project root folder:
 ```bash
 mvn clean install sonar:sonar -Dsonar-login-token=TOKEN
+```                                                    
+
+### Update mvnw
+
+```
+./mvnw -N io.takari:maven:0.7.7:wrapper
 ```
