@@ -60,7 +60,7 @@ public class MainControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"payload\": {\"test\": \"test\"}}"))
         .andExpect(status().isOk())
-        .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+        .andExpect(content().contentType(MediaType.APPLICATION_JSON))
         .andExpect(content().json("{\"success\": true}"));
   }
 }
