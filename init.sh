@@ -78,9 +78,9 @@ prepare() {
     echo "Processing README.md ..."
     echo "# $proj_name
 
-    #### Description
-    $proj_descr
-    " > README.md
+#### Description
+$proj_descr
+" > README.md
 
     echo "Processing $TPL.conf ..."
     mv $TPL.conf $proj_name.conf
