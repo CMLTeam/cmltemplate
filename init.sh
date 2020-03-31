@@ -87,6 +87,7 @@ $proj_descr
 
     echo "Processing sources..."
     mv src/main/java/com/cmlteam/$TPL src/main/java/com/cmlteam/$proj_name
+    mv src/test/java/com/cmlteam/$TPL src/test/java/com/cmlteam/$proj_name
     for f in $(find src/ -type f -name '*.java')
     do
         echo "Processing $f ..."
