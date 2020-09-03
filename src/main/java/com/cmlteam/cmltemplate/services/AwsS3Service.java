@@ -12,6 +12,7 @@ import com.cmlteam.cmltemplate.util.FileName;
 import com.cmlteam.util.Util;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -30,6 +31,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 
 @Service
 @Slf4j
+@ConditionalOnProperty({"s3.enabled"})
 public class AwsS3Service {
 
   private final AmazonS3 s3;

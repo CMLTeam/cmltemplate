@@ -25,7 +25,7 @@ import java.util.concurrent.Executors;
 @ConfigurationPropertiesScan(basePackages = "com.cmlteam")
 @EnableScheduling
 @EnableAsync
-public class AppConfiguration implements AsyncConfigurer, SchedulingConfigurer {
+public class AppConfig implements AsyncConfigurer, SchedulingConfigurer {
   @Bean
   public ReloadableResourceBundleMessageSource messageSource() {
     ReloadableResourceBundleMessageSource messageSource =
