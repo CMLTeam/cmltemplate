@@ -136,7 +136,7 @@
             <!-- we need this 'coz the v2 lacks pre-signed -->
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-java-sdk-s3</artifactId>
-            <version>1.11.560</version>
+            <version>1.11.856</version>
         </dependency>
     </dependencies>
 
