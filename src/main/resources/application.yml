@@ -8,11 +8,11 @@ spring:
     username: cmltemplate
     password: cmltemplate
     driverClassName: com.mysql.jdbc.Driver
-    maxActive: 15
-    maxIdle: 5
-    minIdle: 2
-    initialSize: 5
-    removeAbandoned: true
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      # https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby
+      maximum-pool-size: 100
+      minimum-idle: 40
   jpa:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL57Dialect
