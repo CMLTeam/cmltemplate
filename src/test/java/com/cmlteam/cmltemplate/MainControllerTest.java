@@ -9,10 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-
-import javax.sql.DataSource;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.text.MatchesPattern.matchesPattern;
@@ -24,12 +23,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(MainController.class)
+@ContextConfiguration(classes = {SampleService.class, MainController.class})
 public class MainControllerTest {
   @Autowired private MockMvc mockMvc;
 
   @MockBean private SampleService service;
-
-  @MockBean private DataSource dataSource;
 
   @Before
   public void setup() {
