@@ -23,4 +23,8 @@ mvn clean verify sonar:sonar -Dsonar-login-token=TOKEN
 
 ```
 ./mvnw -N io.takari:maven:0.7.7:wrapper
-```
+```  
+
+### Swagger
+
+Swagger UI available at http://localhost:8080/swagger-ui/index.html 
