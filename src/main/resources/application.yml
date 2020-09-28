@@ -7,7 +7,6 @@ spring:
     url: jdbc:mysql://localhost:23306/cmltemplate?useUnicode=true&rewriteBatchedStatements=true&useSSL=false
     username: cmltemplate
     password: cmltemplate
-    driverClassName: com.mysql.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       # https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby
@@ -15,7 +14,7 @@ spring:
       minimum-idle: 40
   jpa:
     database: mysql
-    database-platform: org.hibernate.dialect.MySQL57Dialect
+    database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
       ddl-auto: update
 

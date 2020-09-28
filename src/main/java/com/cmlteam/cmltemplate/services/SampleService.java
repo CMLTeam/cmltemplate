@@ -16,4 +16,9 @@ public class SampleService {
   public String getDbVersion() {
     return jdbcTemplate.queryForObject("select version();", String.class);
   }
+
+//  @PostConstruct
+//  public void test() {
+//    System.out.println(getDbVersion());
+//  }
 }
