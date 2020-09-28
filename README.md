@@ -28,3 +28,11 @@ mvn clean verify sonar:sonar -Dsonar-login-token=TOKEN
 ### Swagger
 
 Swagger UI available at http://localhost:8080/swagger-ui/index.html 
+
+
+### MySQL
+
+Connect via CLI:
+```
+docker exec -it mysql8 mysql cmltemplate -ucmltemplate -pcmltemplate
+```
