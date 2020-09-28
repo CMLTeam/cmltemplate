@@ -4,7 +4,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost/cmltemplate?useUnicode=true&rewriteBatchedStatements=true&useSSL=false
+    url: jdbc:mysql://localhost:23306/cmltemplate?useUnicode=true&rewriteBatchedStatements=true&useSSL=false
     username: cmltemplate
     password: cmltemplate
     driverClassName: com.mysql.jdbc.Driver

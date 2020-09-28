@@ -1,0 +1,29 @@
+version: '3.3'
+services:
+  db-mysql8:
+    container_name: mysql8
+    image: mysql:8.0
+    restart: always
+    command: >-
+      mysqld
+      --skip-ssl
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_DATABASE: 'cmltemplate'
+      MYSQL_USER: 'cmltemplate'
+      MYSQL_PASSWORD: 'cmltemplate'
+      MYSQL_ROOT_PASSWORD: 'cmltemplate'
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '23306:3306'
+    expose:
+      # Opens port 3306 on the container to other services
+      - '3306'
+      # Where our data will be persisted
+    volumes:
+      - mysql8:/var/lib/mysql
+# Names our volume
+volumes:
+  mysql8:
