@@ -54,6 +54,7 @@ prepare() {
     local TPL=cmltemplate
     local FILES="
     create_db.sh
+    docker-compose.yml
     deploy.sh
     pom.xml
     src/main/resources/application.yml
