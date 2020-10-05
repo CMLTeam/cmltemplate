@@ -1,0 +1,22 @@
+version: '3.3'
+services:
+  db-postgres13:
+    container_name: postgres13
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_USER: 'cmltemplate'
+      POSTGRES_PASSWORD: 'cmltemplate'
+      POSTGRES_DB: 'cmltemplate'
+    ports:
+      # <Port exposed> : <PG Port running inside container>
+      - '25432:5432'
+    expose:
+      # Opens PG port on the container to other services
+      - '5432'
+      # Where our data will be persisted
+    volumes:
+      - postgres13:/var/lib/postgresql/data
+# Names our volume
+volumes:
+  postgres13:
