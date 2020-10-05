@@ -14,9 +14,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(properties = {"cors.enabled=true"})
+@WebMvcTest()
 @ContextConfiguration(classes = {TestController.class, GlobalCorsConfig.class})
-public class CorsOnTest {
+public class CorsOffTest {
   @Autowired private MockMvc mockMvc;
 
   @Test
@@ -25,12 +25,6 @@ public class CorsOnTest {
         .perform(get("/test/ok"))
         .andExpect(status().isOk())
         .andExpect(content().string(equalTo("OK")))
-        .andExpect(
-            header()
-                .stringValues(
-                    "Vary",
-                    "Origin",
-                    "Access-Control-Request-Method",
-                    "Access-Control-Request-Headers"));
+        .andExpect(header().doesNotExist("Vary"));
   }
 }

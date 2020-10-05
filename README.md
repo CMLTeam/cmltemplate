@@ -41,4 +41,8 @@ docker-compose -f docker-compose-mysql.yml up
 Connect via CLI:
 ```
 docker exec -it mysql8 mysql cmltemplate -ucmltemplate -pcmltemplate
-```
+``` 
+
+### Enable global CORS
+
+Run either with `--cors.enabled=true` program argument OR with `CORS_ENABLED=true` environment variable. 
