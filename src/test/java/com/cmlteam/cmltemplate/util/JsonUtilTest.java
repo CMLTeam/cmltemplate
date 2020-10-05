@@ -24,13 +24,22 @@ class JsonUtilTest {
     private String s;
   }
 
+  @Getter
+  @Setter
+  @NoArgsConstructor
+  @AllArgsConstructor
+  private static class A {
+    private TestClass t;
+  }
+
+
   @Test
   void convertToJsonStringShouldSucceed() {
     assertEquals("{\"i\":5,\"s\":\"str\"}", JsonUtil.toJsonString(new TestClass(5, "str")));
   }
 
   @Test
-  void parseListShouldSuceed() {
+  void parseListShouldSucceed() {
     // GIVEN
 
     String json = "[{\"i\":5,\"s\":\"str\"}, {\"i\":6,\"s\":\"other str\"}]";
@@ -169,6 +178,17 @@ class JsonUtilTest {
     TestClass object = JsonUtil.parseJson(json, TestClass.class);
     assertEquals(5, object.getI());
     assertEquals("str", object.getS());
+  }
+
+  @Test
+  void jsonBuilderProduceJson1() {
+    // WHEN
+    String json = JsonUtil.json().add("t", JsonUtil.json().add("i", 5).add("s", "str")).toString();
+
+    // THEN
+    A object = JsonUtil.parseJson(json, A.class);
+    assertEquals(5, object.t.getI());
+    assertEquals("str", object.t.getS());
   }
 
   @Test
