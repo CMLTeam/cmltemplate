@@ -32,6 +32,12 @@ Swagger UI available at http://localhost:8080/swagger-ui/index.html
 
 ### MySQL
 
+Run DB
+
+```
+docker-compose -f docker-compose-mysql.yml up
+```
+
 Connect via CLI:
 ```
 docker exec -it mysql8 mysql cmltemplate -ucmltemplate -pcmltemplate
