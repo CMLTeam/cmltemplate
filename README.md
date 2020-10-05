@@ -35,4 +35,8 @@ Swagger UI available at http://localhost:8080/swagger-ui/index.html
 Connect via CLI:
 ```
 docker exec -it mysql8 mysql cmltemplate -ucmltemplate -pcmltemplate
-```
+``` 
+
+### Enable global CORS
+
+Run either with `--cors.enabled=true` program argument OR with `CORS_ENABLED=true` environment variable. 
