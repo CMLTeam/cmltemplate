@@ -1,5 +1,6 @@
 package com.cmlteam.cmltemplate.util;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,7 @@ public final class JsonUtil {
 
   private static ObjectMapper prepareObjectMapper() {
     ObjectMapper mapper = new ObjectMapper();
+    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
     df.setTimeZone(TimeZone.getTimeZone("GMT"));
     mapper.setDateFormat(df);
