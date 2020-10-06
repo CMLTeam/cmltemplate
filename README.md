@@ -53,7 +53,7 @@ docker-compose -f docker-compose-postgresql.yml up
 
 Connect via CLI:
 ```                                        
-TODO
+docker exec -it postgres13 psql --username=cmltemplate --dbname=cmltemplate
 ``` 
 
 ### Enable global CORS
