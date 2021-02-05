@@ -1,0 +1,22 @@
+
+@options silent
+
+@goal mvnw_update
+@doc Updates mvnw
+  ./mvnw -N io.takari:maven:0.7.7:wrapper
+
+@goal mysqld
+@doc Run Mysql server
+  docker-compose -f docker-compose-mysql.yml up
+
+@goal mysql
+@doc Connect Mysql CLI
+  docker exec -it mysql8 mysql cmltemplate -ucmltemplate -pcmltemplate
+
+@goal postgresd
+@doc Run Postgresql server
+  docker-compose -f docker-compose-postgresql.yml up
+
+@goal postgres
+@doc Connect Postgresql CLI
+  docker exec -it postgres13 psql --username=cmltemplate --dbname=cmltemplate
