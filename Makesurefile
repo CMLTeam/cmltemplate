@@ -20,3 +20,8 @@
 @goal postgres
 @doc Connect Postgresql CLI
   docker exec -it postgres13 psql --username=cmltemplate --dbname=cmltemplate
+
+@goal run
+@doc Run the app
+  export JAVA_HOME=~/.sdkman/candidates/java/current/
+  ./mvnw spring-boot:run
