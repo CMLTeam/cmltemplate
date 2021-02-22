@@ -2,7 +2,11 @@ server:
   address: 127.0.0.1
   port: 8080
 
+
+
 spring:
+  main:
+    allow-bean-definition-overriding: true
   datasource:
     #url: jdbc:mysql://localhost:23306/cmltemplate?useUnicode=true&rewriteBatchedStatements=true&useSSL=false
     url: jdbc:postgresql://localhost:25432/cmltemplate

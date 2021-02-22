@@ -59,3 +59,23 @@ docker exec -it postgres13 psql --username=cmltemplate --dbname=cmltemplate
 ### Enable global CORS
 
 Run either with `--cors.enabled=true` program argument OR with `CORS_ENABLED=true` environment variable. 
+
+### Run RabbitMQ Cluster
+
+Before run cluster the network shared by all Rabbit containers should be created by this command:
+```                                        
+docker network create rabbitmq-cluster
+``` 
+
+`rabbitmq-cluster` network is specified in `docker-compose-rabbitmq.yml` file.
+
+Run RabbitMQ cluster:
+```
+docker-compose -f docker-compose-rabbitmq.yml up
+```
+
+To test how messaging works make this call in java code with appropriate data
+```
+rabbitTemplate.convertAndSend(routingKey, "Prepared message"); 
+```
+And listener will return to you this message: `Message read from the queue : Prepared message`

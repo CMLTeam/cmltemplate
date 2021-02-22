@@ -11,7 +11,7 @@ services:
       --character-set-server=utf8mb4
       --collation-server=utf8mb4_unicode_ci
     environment:
-      MYSQL_DATABASE: 'cmltemplate'
+      MYSQL_DATABASE: 'intraday_prices'
       MYSQL_USER: 'cmltemplate'
       MYSQL_PASSWORD: 'cmltemplate'
       MYSQL_ROOT_PASSWORD: 'cmltemplate'

@@ -1,0 +1,25 @@
+version: '3.3'
+services:
+  rabbit1:
+    image: rabbitmq:3-management
+    hostname: rabbit1
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "secret string"
+      RABBITMQ_NODENAME: rabbit1
+    volumes:
+      - "./rabbitmq.config:/etc/rabbitmq/rabbitmq.config"
+      - "./definitions.json:/etc/rabbitmq/definitions.json"
+    ports:
+#      - "4369:4369"
+#      - "5671:5671"
+      - "5672:5672"
+#      - "15671:15671"
+      - "15672:15672"
+#      - "25672:25672"
+# Network shared by all containers create yours one by this command
+# ~$ docker network create rabbitmq-cluster
+# Check the list of networks: ~$ docker network ls
+networks:
+  default:
+    external:
+      name: rabbitmq-cluster
