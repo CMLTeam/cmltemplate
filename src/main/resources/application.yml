@@ -3,8 +3,6 @@ server:
   port: 8080
 
 spring:
-  main:
-    allow-bean-definition-overriding: true
   datasource:
     #url: jdbc:mysql://localhost:23306/cmltemplate?useUnicode=true&rewriteBatchedStatements=true&useSSL=false
     url: jdbc:postgresql://localhost:25432/cmltemplate
@@ -22,6 +20,9 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQL10Dialect
     hibernate:
       ddl-auto: update
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
 
   liquibase:
     enabled: false # manual
