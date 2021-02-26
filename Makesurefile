@@ -25,3 +25,7 @@
 @doc Run the app
   export JAVA_HOME=~/.sdkman/candidates/java/current/
   ./mvnw spring-boot:run
+
+@goal rabbitmq
+  @doc Run RabbitMQ server
+    docker-compose -f docker-compose-rabbitmq.yml up

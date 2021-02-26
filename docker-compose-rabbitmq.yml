@@ -12,8 +12,3 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
-# Network shared by all containers
-networks:
-  default:
-    external:
-      name: rabbitmq-cluster
