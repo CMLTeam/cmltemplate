@@ -12,9 +12,9 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ConditionalOnProperty({"rabbitmq.enabled"})
-public class RabbitMQConfig {
+public class RabbitConfig {
 
-  static final String QUEUE_NAME = "simple_queue";
+  public static final String QUEUE_NAME = "simple_queue";
 
   private final String exchange = "simple_exchange";
 
@@ -45,10 +45,5 @@ public class RabbitMQConfig {
     final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
     rabbitTemplate.setMessageConverter(jsonMessageConverter());
     return rabbitTemplate;
-  }
-
-  @RabbitListener(queues = QUEUE_NAME)
-  public void listen(String in) {
-    System.out.println("Message read from myQueue : " + in);
   }
 }
