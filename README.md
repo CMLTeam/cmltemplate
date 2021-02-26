@@ -59,3 +59,17 @@ docker exec -it postgres13 psql --username=cmltemplate --dbname=cmltemplate
 ### Enable global CORS
 
 Run either with `--cors.enabled=true` program argument OR with `CORS_ENABLED=true` environment variable. 
+
+### Run RabbitMQ Server
+
+```
+docker-compose -f docker-compose-rabbitmq.yml up
+```
+
+Admin UI for RabbitMQ can be accessed by link `http://localhost:15672/`. The default credentials is: `login: guest; pass: guest`.
+
+To test how messaging works make this call in java code with appropriate data
+```
+rabbitTemplate.convertAndSend(routingKey, "Prepared message"); 
+```
+And listener will return to you this message: `Message read from the queue : Prepared message`
