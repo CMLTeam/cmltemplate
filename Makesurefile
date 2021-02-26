@@ -27,5 +27,5 @@
   ./mvnw spring-boot:run
 
 @goal rabbitmq
-  @doc Run RabbitMQ server
-    docker-compose -f docker-compose-rabbitmq.yml up
+@doc Run RabbitMQ server
+  docker-compose -f docker-compose-rabbitmq.yml up

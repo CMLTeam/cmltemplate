@@ -50,6 +50,9 @@ liquibase:
 logRestRequestWebInterceptor:
   enabled: true
 
+rabbitmq:
+  enabled: false
+
 s3:
   enabled: false
   bucket: "" # EXTERNAL
