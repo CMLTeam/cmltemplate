@@ -46,7 +46,7 @@ spring:
 
 liquibase:
   # TODO change the value below to true to enable liquibase
-  manual: false
+  manual: true
 
 logRestRequestWebInterceptor:
   enabled: true
