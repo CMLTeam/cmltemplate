@@ -1,4 +1,4 @@
-package com.cmlteam.cmltemplate.core.config;
+package com.cmlteam.cmltemplate.config;
 
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.aop.interceptor.SimpleAsyncUncaughtExceptionHandler;

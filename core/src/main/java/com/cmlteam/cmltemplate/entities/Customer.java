@@ -1,4 +1,4 @@
-package com.cmlteam.cmltemplate.security.entities;
+package com.cmlteam.cmltemplate.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

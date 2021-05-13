@@ -1,6 +1,6 @@
-package com.cmlteam.cmltemplate.security.service;
+package com.cmlteam.cmltemplate.service;
 
-import com.cmlteam.cmltemplate.security.property.JwtProperty;
+import com.cmlteam.cmltemplate.property.JwtProperty;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

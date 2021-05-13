@@ -1,4 +1,4 @@
-package com.cmlteam.cmltemplate.security;
+package com.cmlteam.cmltemplate;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import javax.annotation.PostConstruct;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "com.cmlteam")
+//@ComponentScan(basePackages = "com.cmlteam.cmltemplate")
 public class Application {
 
   public static void main(String[] args) {

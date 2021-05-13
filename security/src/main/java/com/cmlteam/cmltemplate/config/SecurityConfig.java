@@ -1,6 +1,6 @@
-package com.cmlteam.cmltemplate.security.config;
+package com.cmlteam.cmltemplate.config;
 
-import com.cmlteam.cmltemplate.security.service.CustomerAuthenticationFilter;
+import com.cmlteam.cmltemplate.service.CustomerAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

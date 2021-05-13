@@ -1,6 +1,6 @@
-package com.cmlteam.cmltemplate.security.service;
+package com.cmlteam.cmltemplate.service;
 
-import com.cmlteam.cmltemplate.security.entities.Customer;
+import com.cmlteam.cmltemplate.entities.Customer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

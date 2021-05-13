@@ -1,4 +1,4 @@
-package com.cmlteam.cmltemplate.core.service;
+package com.cmlteam.cmltemplate.service;
 
 import org.springframework.stereotype.Service;
 

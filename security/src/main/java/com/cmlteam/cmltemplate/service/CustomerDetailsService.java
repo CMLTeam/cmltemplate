@@ -1,8 +1,8 @@
-package com.cmlteam.cmltemplate.security.service;
+package com.cmlteam.cmltemplate.service;
 
-import com.cmlteam.cmltemplate.security.entities.Customer;
-import com.cmlteam.cmltemplate.core.exceptions.NotFoundException;
-import com.cmlteam.cmltemplate.security.repository.CustomerRepository;
+import com.cmlteam.cmltemplate.entities.Customer;
+import com.cmlteam.cmltemplate.exceptions.NotFoundException;
+import com.cmlteam.cmltemplate.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;

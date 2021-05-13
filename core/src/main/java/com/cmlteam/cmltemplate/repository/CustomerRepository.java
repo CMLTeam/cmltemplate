@@ -1,6 +1,6 @@
-package com.cmlteam.cmltemplate.security.repository;
+package com.cmlteam.cmltemplate.repository;
 
-import com.cmlteam.cmltemplate.security.entities.Customer;
+import com.cmlteam.cmltemplate.entities.Customer;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package com.cmlteam.cmltemplate.core.config;
+package com.cmlteam.cmltemplate.config;
 
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.beans.factory.annotation.Autowired;

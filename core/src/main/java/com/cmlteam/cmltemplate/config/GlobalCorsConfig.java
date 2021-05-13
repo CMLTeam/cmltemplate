@@ -1,4 +1,4 @@
-package com.cmlteam.cmltemplate.core.config;
+package com.cmlteam.cmltemplate.config;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package com.cmlteam.cmltemplate.security.property;
+package com.cmlteam.cmltemplate.property;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,4 +1,4 @@
-package com.cmlteam.cmltemplate.core.config;
+package com.cmlteam.cmltemplate.config;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;

@@ -1,6 +1,6 @@
-package com.cmlteam.cmltemplate.security.controller;
+package com.cmlteam.cmltemplate.controller;
 
-import com.cmlteam.cmltemplate.core.service.SampleService;
+import com.cmlteam.cmltemplate.service.SampleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;

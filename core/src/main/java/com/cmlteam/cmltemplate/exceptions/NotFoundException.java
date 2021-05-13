@@ -1,4 +1,4 @@
-package com.cmlteam.cmltemplate.core.exceptions;
+package com.cmlteam.cmltemplate.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
