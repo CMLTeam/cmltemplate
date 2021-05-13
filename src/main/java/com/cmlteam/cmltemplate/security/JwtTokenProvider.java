@@ -1,30 +1,28 @@
 package com.cmlteam.cmltemplate.security;
 
+import com.cmlteam.cmltemplate.property.JwtProperty;
 import io.jsonwebtoken.*;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.Date;
 
-@Component
 @Slf4j
+@Service
+@RequiredArgsConstructor
 public class JwtTokenProvider {
-  @Value("${jwt.secret}")
-  private String jwtSecret;
-
-  @Value("${jwt.expirationInMs}")
-  private int jwtExpirationInMs;
+  private final JwtProperty jwtProperty;
 
   public String generateShort(String subject) {
     var now = new Date();
-    var expiryDate = new Date(now.getTime() + jwtExpirationInMs);
+    var expiryDate = new Date(now.getTime() + jwtProperty.getJwtExpirationInMs());
     return Jwts.builder()
         .setSubject(subject)
         .setIssuedAt(now)
         .setExpiration(expiryDate)
-        .signWith(SignatureAlgorithm.HS512, jwtSecret)
+        .signWith(SignatureAlgorithm.HS512, jwtProperty.getJwtSecret())
         .compact();
   }
 
@@ -32,19 +30,20 @@ public class JwtTokenProvider {
     return Jwts.builder()
         .setSubject(subject)
         .setIssuedAt(new Date())
-        .signWith(SignatureAlgorithm.HS512, jwtSecret)
+        .signWith(SignatureAlgorithm.HS512, jwtProperty.getJwtSecret())
         .compact();
   }
 
   public String getSubject(String token) {
-    var claims = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
+    var claims =
+        Jwts.parser().setSigningKey(jwtProperty.getJwtSecret()).parseClaimsJws(token).getBody();
     return claims.getSubject();
   }
 
   public boolean isValid(String token) {
     if (!StringUtils.hasText(token)) return false;
     try {
-      Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token);
+      Jwts.parser().setSigningKey(jwtProperty.getJwtSecret()).parseClaimsJws(token);
       return true;
     } catch (SignatureException ex) {
       log.error("Invalid JWT signature");

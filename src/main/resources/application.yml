@@ -40,13 +40,17 @@ spring:
           socketFactory:
             class: "javax.net.ssl.SSLSocketFactory"
 
+jwt:
+  secret: # EXTERNAL
+  expirationInMs: # EXTERNAL
+
 #logging:
 #  level:
 #    org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: TRACE
 
 liquibase:
   # TODO change the value below to true to enable liquibase
-  manual: true
+  manual: false
 
 logRestRequestWebInterceptor:
   enabled: true
