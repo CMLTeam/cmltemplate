@@ -6,7 +6,11 @@
     <groupId>com.cmlteam</groupId>
     <artifactId>cmltemplate</artifactId>
     <version>0.1.1</version>
-    <packaging>jar</packaging>
+    <modules>
+        <module>core</module>
+        <module>security</module>
+    </modules>
+    <packaging>pom</packaging>
 
     <name>cmltemplate</name>
     <description>CML Spring Boot Template</description>
@@ -165,13 +169,6 @@
     <build>
         <finalName>cmltemplate</finalName>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <executable>true</executable>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
