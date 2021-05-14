@@ -2,6 +2,7 @@ package com.cmlteam.cmltemplate.security;
 
 import com.cmlteam.cmltemplate.repository.CustomerRepository;
 import com.cmlteam.cmltemplate.service.CustomerAuthenticationFilter;
+import com.cmlteam.cmltemplate.service.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,15 +21,25 @@ import java.io.IOException;
 @Slf4j
 @RequiredArgsConstructor
 public class SecurityCustomerService extends OncePerRequestFilter {
-  private final CustomerAuthenticationFilter customerAuthenticationFilter;
   private final CustomerRepository customerRepository;
+  // ToDo microservices
+  private final CustomerAuthenticationFilter customerAuthenticationFilter;
+  private final JwtTokenProvider jwtTokenProvider;
+
+  public String generateShort(String subject) {
+    return jwtTokenProvider.generateShort(subject);
+  }
+
+  public String generateLong(String subject) {
+    return jwtTokenProvider.generateLong(subject);
+  }
 
   @Override
   protected void doFilterInternal(
       HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
       throws ServletException, IOException {
-    String jwtShort = getJwtShortFromHeader(request);
-    String jwtLong = getJwtLongFromHeader(request);
+    String jwtShort = request.getHeader("Customer-Authentication");
+    String jwtLong = request.getHeader("Customer-Authentication-Long");
     customerAuthenticationFilter
         .getAuthId(jwtShort, jwtLong)
         .ifPresent(
@@ -37,14 +48,6 @@ public class SecurityCustomerService extends OncePerRequestFilter {
               SecurityContextHolder.getContext().setAuthentication(authentication);
             });
     filterChain.doFilter(request, response);
-  }
-
-  private String getJwtShortFromHeader(HttpServletRequest request) {
-    return request.getHeader("Customer-Authentication");
-  }
-
-  private String getJwtLongFromHeader(HttpServletRequest request) {
-    return request.getHeader("Customer-Authentication-Long");
   }
 
   private UsernamePasswordAuthenticationToken getAuthentication(
