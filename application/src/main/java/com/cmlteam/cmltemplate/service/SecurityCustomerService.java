@@ -1,10 +1,12 @@
-package com.cmlteam.cmltemplate.security;
+package com.cmlteam.cmltemplate.service;
 
-import com.cmlteam.cmltemplate.service.JwtTokenProvider;
+import com.cmlteam.cmltemplate.entities.Customer;
+import com.cmlteam.cmltemplate.exceptions.UnauthorizedException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,15 @@ public class SecurityCustomerService {
 
   public void authenticate(String email, String password) {
     authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
+  }
+
+  public Customer getCurrentCustomer() {
+    var authentication = SecurityContextHolder.getContext().getAuthentication();
+    try {
+      return (Customer) authentication.getPrincipal();
+    } catch (ClassCastException e) {
+      throw new UnauthorizedException("Can't get current customer from context");
+    }
   }
 
   public String encode(String password) {

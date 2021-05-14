@@ -1,5 +1,6 @@
 package com.cmlteam.cmltemplate.security;
 
+import com.cmlteam.cmltemplate.exceptions.NotFoundException;
 import com.cmlteam.cmltemplate.repository.CustomerRepository;
 import com.cmlteam.cmltemplate.service.CustomerAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
@@ -44,7 +45,10 @@ public class SecurityCustomerFilter extends OncePerRequestFilter {
 
   private UsernamePasswordAuthenticationToken getAuthentication(
       HttpServletRequest request, Long id) {
-    var userDetails = customerRepository.getOne(id);
+    var userDetails =
+        customerRepository
+            .findById(id)
+            .orElseThrow(() -> new NotFoundException("User doesn't exists with id " + id));
     var authentication =
         new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

@@ -4,7 +4,6 @@ import com.cmlteam.cmltemplate.entities.Customer;
 import com.cmlteam.cmltemplate.exceptions.NotFoundException;
 import com.cmlteam.cmltemplate.model.request.AuthenticationRequest;
 import com.cmlteam.cmltemplate.repository.CustomerRepository;
-import com.cmlteam.cmltemplate.security.SecurityCustomerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
