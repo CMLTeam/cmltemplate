@@ -2,10 +2,8 @@ package com.cmlteam.cmltemplate.security;
 
 import com.cmlteam.cmltemplate.repository.CustomerRepository;
 import com.cmlteam.cmltemplate.service.CustomerAuthenticationFilter;
-import com.cmlteam.cmltemplate.service.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -18,8 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Component
 @Slf4j
+@Component
 @RequiredArgsConstructor
 public class SecurityCustomerFilter extends OncePerRequestFilter {
   private final CustomerRepository customerRepository;
@@ -32,14 +30,16 @@ public class SecurityCustomerFilter extends OncePerRequestFilter {
       throws ServletException, IOException {
     String jwtShort = request.getHeader("Customer-Authentication");
     String jwtLong = request.getHeader("Customer-Authentication-Long");
+
     customerAuthenticationFilter
         .getAuthId(jwtShort, jwtLong)
-        .ifPresent(
-            id -> {
-              var authentication = getAuthentication(request, id);
-              SecurityContextHolder.getContext().setAuthentication(authentication);
-            });
+        .ifPresent(id -> setContext(request, id));
     filterChain.doFilter(request, response);
+  }
+
+  private void setContext(HttpServletRequest request, Long id) {
+    var authentication = getAuthentication(request, id);
+    SecurityContextHolder.getContext().setAuthentication(authentication);
   }
 
   private UsernamePasswordAuthenticationToken getAuthentication(

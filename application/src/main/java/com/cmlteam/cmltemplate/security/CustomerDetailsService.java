@@ -8,8 +8,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
-@Service
 @Slf4j
+@Service
 @RequiredArgsConstructor
 public class CustomerDetailsService implements UserDetailsService {
   private final CustomerRepository customerRepository;
@@ -18,6 +18,6 @@ public class CustomerDetailsService implements UserDetailsService {
   public UserDetails loadUserByUsername(String username) {
     return customerRepository
         .findByEmail(username)
-        .orElseThrow(() -> new NotFoundException("No customer with username" + username));
+        .orElseThrow(() -> new NotFoundException("No customer with email " + username));
   }
 }
