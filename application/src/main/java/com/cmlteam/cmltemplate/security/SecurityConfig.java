@@ -21,7 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 @EnableGlobalMethodSecurity(prePostEnabled = true, jsr250Enabled = true, securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-  private final SecurityCustomerService securityCustomerService;
+  private final SecurityCustomerFilter securityCustomerFilter;
   private final UserDetailsService userService;
 
   @Override
@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .sessionManagement()
         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
-        .addFilterBefore(securityCustomerService, UsernamePasswordAuthenticationFilter.class)
+        .addFilterBefore(securityCustomerFilter, UsernamePasswordAuthenticationFilter.class)
         .authorizeRequests()
         //            ToDo if have ALL secure api (/api, /admin, etc) use this
         //        .antMatchers(OPTIONS, "/**")
