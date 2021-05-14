@@ -1,6 +1,5 @@
-package com.cmlteam.cmltemplate.config;
+package com.cmlteam.cmltemplate.security;
 
-import com.cmlteam.cmltemplate.service.CustomerAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 @EnableGlobalMethodSecurity(prePostEnabled = true, jsr250Enabled = true, securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-  private final CustomerAuthenticationFilter customerAuthenticationFilter;
+  private final SecurityCustomerService securityCustomerService;
   private final UserDetailsService userService;
 
   @Override
@@ -38,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .sessionManagement()
         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
-        .addFilterBefore(customerAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+        .addFilterBefore(securityCustomerService, UsernamePasswordAuthenticationFilter.class)
         .authorizeRequests()
         //            ToDo if have ALL secure api (/api, /admin, etc) use this
         //        .antMatchers(OPTIONS, "/**")

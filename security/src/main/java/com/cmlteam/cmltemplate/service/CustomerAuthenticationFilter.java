@@ -1,67 +1,39 @@
 package com.cmlteam.cmltemplate.service;
 
-import com.cmlteam.cmltemplate.entities.Customer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import org.springframework.web.filter.OncePerRequestFilter;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.Optional;
 
-@Component
+@Service
 @Slf4j
 @RequiredArgsConstructor
-public class CustomerAuthenticationFilter extends OncePerRequestFilter {
+public class CustomerAuthenticationFilter {
   private final JwtTokenProvider jwtTokenProvider;
   private final CustomerDetailsService customerDetailsService;
 
-  @Override
-  protected void doFilterInternal(
-      HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-      throws ServletException, IOException {
-    String jwtShort = getJwtShortFromHeader(request);
-    String jwtLong = getJwtLongFromHeader(request);
-    doJwtFilter(request, jwtShort);
+  public Optional<Long> getAuthId(String jwtShort, String jwtLong) {
     if (StringUtils.hasText(jwtLong)) {
-      doJwtFilter(request, jwtLong);
+      return getAuthId(jwtLong);
     }
-    filterChain.doFilter(request, response);
+    return getAuthId(jwtShort);
   }
 
-  private void doJwtFilter(HttpServletRequest request, String jwt) {
+  private Optional<Long> getAuthId(String jwt) {
     if (jwtTokenProvider.isValid(jwt)) {
-      var userDetails = fetchUserDetails(jwt);
-      userDetails.ifPresent(it -> setAuthentication(request, it));
+      return fetchUserDetailsId(jwt);
     }
+    return Optional.empty();
   }
 
-  private Optional<Customer> fetchUserDetails(String jwt) {
+  private Optional<Long> fetchUserDetailsId(String jwt) {
     var id = Long.valueOf(jwtTokenProvider.getSubject(jwt));
-    return customerDetailsService.loadCustomerById(id);
-  }
-
-  private void setAuthentication(HttpServletRequest request, UserDetails userDetails) {
-    var authentication =
-        new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-    SecurityContextHolder.getContext().setAuthentication(authentication);
-  }
-
-  private String getJwtShortFromHeader(HttpServletRequest request) {
-    return request.getHeader("Customer-Authentication");
-  }
-
-  private String getJwtLongFromHeader(HttpServletRequest request) {
-    return request.getHeader("Customer-Authentication-Long");
+    if (customerDetailsService.loadCustomerById(id).isPresent()) {
+      return Optional.of(id);
+    } else {
+      return Optional.empty();
+    }
   }
 }
