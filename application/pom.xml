@@ -9,7 +9,7 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>security</artifactId>
+    <artifactId>application</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
@@ -21,7 +21,7 @@
     </dependencies>
 
     <build>
-        <finalName>security</finalName>
+        <finalName>application</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
