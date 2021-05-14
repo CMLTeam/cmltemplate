@@ -1,5 +1,7 @@
 package com.cmlteam.cmltemplate.service;
 
+import com.cmlteam.cmltemplate.entities.Customer;
+import com.cmlteam.cmltemplate.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -12,7 +14,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CustomerAuthenticationFilter {
   private final JwtTokenProvider jwtTokenProvider;
-  private final CustomerDetailsService customerDetailsService;
+  private final CustomerRepository customerRepository;
 
   public Optional<Long> getAuthId(String jwtShort, String jwtLong) {
     if (StringUtils.hasText(jwtLong)) {
@@ -30,10 +32,14 @@ public class CustomerAuthenticationFilter {
 
   private Optional<Long> fetchUserDetailsId(String jwt) {
     var id = Long.valueOf(jwtTokenProvider.getSubject(jwt));
-    if (customerDetailsService.loadCustomerById(id).isPresent()) {
+    if (loadCustomerById(id).isPresent()) {
       return Optional.of(id);
     } else {
       return Optional.empty();
     }
+  }
+
+  private Optional<Customer> loadCustomerById(Long id) {
+    return customerRepository.findById(id).filter(Customer::isEnabled);
   }
 }
