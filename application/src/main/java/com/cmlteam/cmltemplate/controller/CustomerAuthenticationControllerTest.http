@@ -1,0 +1,54 @@
+# 200 - first time
+# 409 - second time
+POST http://localhost:8080/sign-up
+Content-Type: application/json
+
+{
+  "email": "email",
+  "password": "password"
+}
+
+###
+# 403
+POST http://localhost:8080/sign-in
+Content-Type: application/json
+
+{
+  "email": "email333",
+  "password": "password"
+}
+
+###
+# 403
+POST http://localhost:8080/sign-in
+Content-Type: application/json
+
+{
+  "email": "email",
+  "password": "password333"
+}
+
+###
+# 200
+POST http://localhost:8080/sign-in
+Content-Type: application/json
+
+{
+  "email": "email",
+  "password": "password"
+}
+> {% client.global.set("shortToken", response.body.shortToken); %}
+
+###
+# 200
+GET http://localhost:8080/get-current
+Accept: application/json
+Customer-Authentication: {{shortToken}}
+
+###
+# 401
+GET http://localhost:8080/get-current
+Accept: application/json
+Customer-Authentication: invalidJWT
+
+###

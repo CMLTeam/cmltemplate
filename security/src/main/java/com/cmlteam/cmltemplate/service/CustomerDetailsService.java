@@ -1,7 +1,7 @@
-package com.cmlteam.cmltemplate.security;
+package com.cmlteam.cmltemplate.service;
 
 import com.cmlteam.cmltemplate.exceptions.ForbiddenException;
-import com.cmlteam.cmltemplate.repository.CustomerRepository;
+import com.cmlteam.cmltemplate.repository.SecurityCustomerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,11 +12,11 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class CustomerDetailsService implements UserDetailsService {
-  private final CustomerRepository customerRepository;
+  private final SecurityCustomerRepository securityCustomerRepository;
 
   @Override
   public UserDetails loadUserByUsername(String username) {
-    return customerRepository
+    return securityCustomerRepository
         .findByEmail(username)
         .orElseThrow(() -> new ForbiddenException("No customer with email " + username));
   }

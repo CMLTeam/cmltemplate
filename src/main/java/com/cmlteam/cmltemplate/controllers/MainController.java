@@ -5,7 +5,6 @@ import com.cmlteam.cmltemplate.services.SampleService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,13 +26,6 @@ public class MainController {
   @GetMapping(value = "test")
   public String test() {
     return "Hello CML!";
-  }
-
-  @ApiOperation(value = "Test GET Authentication endpoint")
-  @GetMapping(value = "test-auth")
-  @PreAuthorize("hasRole('CUSTOMER')")
-  public String testAuthentication() {
-    return "Hello Authentication CML!";
   }
 
   @GetMapping(value = "testws")

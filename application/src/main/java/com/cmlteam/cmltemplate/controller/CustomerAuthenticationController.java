@@ -5,6 +5,7 @@ import com.cmlteam.cmltemplate.service.CustomerAuthenticationService;
 import com.cmlteam.cmltemplate.service.SecurityCustomerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,7 @@ public class CustomerAuthenticationController {
   private final SecurityCustomerService securityCustomerService;
 
   @GetMapping("get-current")
+  @PreAuthorize("hasRole('CUSTOMER')")
   public Object getCurrent() {
     return securityCustomerService.getCurrentCustomer();
   }

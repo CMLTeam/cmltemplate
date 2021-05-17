@@ -10,7 +10,6 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>security</artifactId>
-    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
@@ -18,19 +17,22 @@
             <artifactId>core</artifactId>
             <version>0.1.1</version>
         </dependency>
-    </dependencies>
 
-    <build>
-        <finalName>security</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <executable>true</executable>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>5.1.5.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>5.1.5.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jjwt-version}</version>
+        </dependency>
+    </dependencies>
 
 </project>

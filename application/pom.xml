@@ -15,6 +15,11 @@
     <dependencies>
         <dependency>
             <groupId>com.cmlteam</groupId>
+            <artifactId>core</artifactId>
+            <version>0.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cmlteam</groupId>
             <artifactId>security</artifactId>
             <version>0.1.1</version>
         </dependency>

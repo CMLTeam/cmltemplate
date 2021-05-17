@@ -1,22 +1,21 @@
 package com.cmlteam.cmltemplate.entities;
 
-import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Collections;
 
 @Entity
 @Getter
 @Setter
-@Builder
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "customer")
-public class Customer implements UserDetails {
+public class Customer {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "id")
@@ -25,46 +24,9 @@ public class Customer implements UserDetails {
   @Column(name = "email", unique = true)
   private String email;
 
-  @Column(name = "password")
-  private String password;
-
   @Column(name = "first_name")
   private String firstName;
 
   @Column(name = "last_name")
   private String lastName;
-
-  @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return Collections.singleton(new SimpleGrantedAuthority("ROLE_CUSTOMER"));
-  }
-
-  @Override
-  public String getUsername() {
-    return email;
-  }
-
-  // TODO remove mock function
-  @Override
-  public boolean isAccountNonExpired() {
-    return true;
-  }
-
-  // TODO remove mock function
-  @Override
-  public boolean isAccountNonLocked() {
-    return true;
-  }
-
-  // TODO remove mock function
-  @Override
-  public boolean isCredentialsNonExpired() {
-    return true;
-  }
-
-  // TODO remove mock function
-  @Override
-  public boolean isEnabled() {
-    return true;
-  }
 }
