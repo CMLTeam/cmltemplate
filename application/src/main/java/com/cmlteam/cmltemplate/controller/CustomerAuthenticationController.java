@@ -6,10 +6,7 @@ import com.cmlteam.cmltemplate.service.SecurityCustomerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -32,5 +29,10 @@ public class CustomerAuthenticationController {
   @PostMapping("sign-in")
   public Object signIn(@RequestBody AuthenticationRequest request) {
     return customerAuthenticationService.signIn(request);
+  }
+
+  @PostMapping("change-password/{id}/{password}")
+  public void setPassword(@PathVariable Long id, @PathVariable String password) {
+    customerAuthenticationService.setPassword(id, password);
   }
 }

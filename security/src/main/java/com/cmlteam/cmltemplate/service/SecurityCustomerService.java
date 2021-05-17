@@ -28,7 +28,7 @@ public class SecurityCustomerService {
   private final SecurityCustomerRepository securityCustomerRepository;
 
   @Transactional
-  public AuthenticationResponse signUp(AuthenticationRequest request) {
+  public AuthenticationResponse register(AuthenticationRequest request) {
     if (securityCustomerRepository.findByEmail(request.getEmail()).isPresent())
       throw new ConflictException("Customer with such email already exist");
     var entity =
@@ -42,7 +42,7 @@ public class SecurityCustomerService {
   }
 
   @Transactional
-  public AuthenticationResponse signIn(AuthenticationRequest request) {
+  public AuthenticationResponse generateToken(AuthenticationRequest request) {
     authenticate(request.getEmail(), request.getPassword());
     var customer =
         securityCustomerRepository
@@ -69,5 +69,14 @@ public class SecurityCustomerService {
     String shortToken = jwtTokenProvider.generateShort(customer.getId().toString());
     String longToken = jwtTokenProvider.generateLong(customer.getId().toString());
     return AuthenticationResponse.builder().shortToken(shortToken).longToken(longToken).build();
+  }
+
+  public void setPassword(Long id, String newPassword) {
+    SecurityCustomer customer =
+        securityCustomerRepository
+            .findById(id)
+            .orElseThrow(() -> new NotFoundException("Not found user with id " + id));
+    customer.setPassword(passwordEncoder.encode(newPassword));
+    securityCustomerRepository.save(customer);
   }
 }

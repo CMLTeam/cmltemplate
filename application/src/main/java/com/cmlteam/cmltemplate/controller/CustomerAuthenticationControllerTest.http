@@ -52,3 +52,10 @@ Accept: application/json
 Customer-Authentication: invalidJWT
 
 ###
+# 403
+POST http://localhost:8080/change-password/5/newPassword
+Content-Type: application/json
+
+{}
+
+###

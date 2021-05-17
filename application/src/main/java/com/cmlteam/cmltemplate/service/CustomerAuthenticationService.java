@@ -12,10 +12,14 @@ public class CustomerAuthenticationService {
   private final SecurityCustomerService securityCustomerService;
 
   public Object signUp(AuthenticationRequest request) {
-    return securityCustomerService.signUp(request);
+    return securityCustomerService.register(request);
   }
 
   public Object signIn(AuthenticationRequest request) {
-    return securityCustomerService.signIn(request);
+    return securityCustomerService.generateToken(request);
+  }
+
+  public void setPassword(Long id, String newPassword) {
+    securityCustomerService.setPassword(id, newPassword);
   }
 }
