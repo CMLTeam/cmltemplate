@@ -62,7 +62,7 @@ Run either with `--cors.enabled=true` program argument OR with `CORS_ENABLED=tru
 
 ### RabbitMQ
             
-If you need to develop with RabbitMQ, in [application.yml](src/main/resources/application.yml) set the property `rabbitmq.enabled` to `true`.
+If you need to develop with RabbitMQ, in [application.yml](application/src/main/resources/application.yml) set the property `rabbitmq.enabled` to `true`.
 
 Then run RabbitMQ server:
 

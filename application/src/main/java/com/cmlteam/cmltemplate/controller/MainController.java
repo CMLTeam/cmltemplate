@@ -1,4 +1,4 @@
-package com.cmlteam.cmltemplate.controllers;
+package com.cmlteam.cmltemplate.controller;
 
 import com.cmlteam.cmltemplate.model.ServerStatus;
 import com.cmlteam.cmltemplate.services.SampleService;

@@ -1,6 +1,6 @@
 package com.cmlteam.cmltemplate;
 
-import com.cmlteam.cmltemplate.controllers.MainController;
+import com.cmlteam.cmltemplate.controller.MainController;
 import com.cmlteam.cmltemplate.services.SampleService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
