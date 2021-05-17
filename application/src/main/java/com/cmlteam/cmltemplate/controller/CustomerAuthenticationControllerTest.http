@@ -46,7 +46,7 @@ Accept: application/json
 Customer-Authentication: {{shortToken}}
 
 ###
-# 401
+# 403
 GET http://localhost:8080/get-current
 Accept: application/json
 Customer-Authentication: invalidJWT
