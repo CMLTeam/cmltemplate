@@ -6,7 +6,6 @@ import com.cmlteam.cmltemplate.exceptions.NotFoundException;
 import com.cmlteam.cmltemplate.model.request.AuthenticationRequest;
 import com.cmlteam.cmltemplate.model.response.AuthenticationResponse;
 import com.cmlteam.cmltemplate.repository.SecurityCustomerRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -19,8 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -35,18 +33,6 @@ class SecurityCustomerServiceTest {
   @Mock SecurityCustomerRepository securityCustomerRepository;
 
   @InjectMocks SecurityCustomerService securityCustomerService;
-
-  @BeforeEach
-  void setUp() {
-    /*
-      when(securityCustomerRepository.findByEmail(any(String.class)))
-          .thenReturn(Optional.of(SAMPLE_CUSTOMER));
-      when(securityCustomerRepository.save(any(SecurityCustomer.class))).thenReturn(SAMPLE_CUSTOMER);
-      when(passwordEncoder.encode(any(String.class))).thenReturn("encode password");
-      when(jwtTokenProvider.generateShort(any(String.class))).thenReturn("new short");
-      when(jwtTokenProvider.generateLong(any(String.class))).thenReturn("new long");
-    */
-  }
 
   @Test
   void registerAlreadyExist() {
@@ -100,8 +86,18 @@ class SecurityCustomerServiceTest {
   }
 
   @Test
-  void getCurrentCustomer() {}
+  void setPasswordForNotExistCustomer() {
+    when(securityCustomerRepository.findById(any(Long.class))).thenReturn(Optional.empty());
+
+    assertThrows(
+        NotFoundException.class, () -> securityCustomerService.setPassword(-2L, "new-pass"));
+  }
 
   @Test
-  void setPassword() {}
+  void setPasswordSuccess() {
+    when(securityCustomerRepository.findById(any(Long.class)))
+        .thenReturn(Optional.of(SAMPLE_CUSTOMER));
+
+    assertDoesNotThrow(() -> securityCustomerService.setPassword(-2L, "new-pass"));
+  }
 }

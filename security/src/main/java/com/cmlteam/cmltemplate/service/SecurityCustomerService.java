@@ -52,6 +52,7 @@ public class SecurityCustomerService {
     return getAuthenticationResponse(customer);
   }
 
+  @Transactional
   public void setPassword(Long id, String newPassword) {
     SecurityCustomer customer =
         securityCustomerRepository
