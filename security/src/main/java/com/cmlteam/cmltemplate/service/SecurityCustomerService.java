@@ -52,6 +52,15 @@ public class SecurityCustomerService {
     return getAuthenticationResponse(customer);
   }
 
+  public void setPassword(Long id, String newPassword) {
+    SecurityCustomer customer =
+        securityCustomerRepository
+            .findById(id)
+            .orElseThrow(() -> new NotFoundException("Not found user with id " + id));
+    customer.setPassword(passwordEncoder.encode(newPassword));
+    securityCustomerRepository.save(customer);
+  }
+
   public Customer getCurrentCustomer() {
     var authentication = SecurityContextHolder.getContext().getAuthentication();
     try {
@@ -69,14 +78,5 @@ public class SecurityCustomerService {
     String shortToken = jwtTokenProvider.generateShort(customer.getId().toString());
     String longToken = jwtTokenProvider.generateLong(customer.getId().toString());
     return AuthenticationResponse.builder().shortToken(shortToken).longToken(longToken).build();
-  }
-
-  public void setPassword(Long id, String newPassword) {
-    SecurityCustomer customer =
-        securityCustomerRepository
-            .findById(id)
-            .orElseThrow(() -> new NotFoundException("Not found user with id " + id));
-    customer.setPassword(passwordEncoder.encode(newPassword));
-    securityCustomerRepository.save(customer);
   }
 }
