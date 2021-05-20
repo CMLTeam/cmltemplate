@@ -41,6 +41,7 @@ spring:
             class: "javax.net.ssl.SSLSocketFactory"
 
 jwt:
+  enabled: false
   secret: # EXTERNAL
   expirationInMs: # EXTERNAL
 

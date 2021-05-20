@@ -7,6 +7,7 @@ import com.cmlteam.cmltemplate.exceptions.UnauthorizedException;
 import com.cmlteam.cmltemplate.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,6 +19,7 @@ import javax.transaction.Transactional;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@ConditionalOnProperty("jwt.enabled")
 public class SecurityCustomerService {
   private final AuthenticationManager authenticationManager;
   private final JwtTokenProvider jwtTokenProvider;

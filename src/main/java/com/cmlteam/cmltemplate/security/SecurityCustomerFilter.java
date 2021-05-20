@@ -4,6 +4,7 @@ import com.cmlteam.cmltemplate.entities.User;
 import com.cmlteam.cmltemplate.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -21,6 +22,7 @@ import java.util.Optional;
 @Slf4j
 @Component
 @RequiredArgsConstructor
+@ConditionalOnProperty("jwt.enabled")
 class SecurityCustomerFilter extends OncePerRequestFilter {
   private final UserRepository userRepository;
   private final JwtTokenProvider jwtTokenProvider;

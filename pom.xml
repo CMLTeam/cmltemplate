@@ -144,7 +144,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!--        security:-->
+        <!-- security: -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>

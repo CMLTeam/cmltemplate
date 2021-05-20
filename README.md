@@ -21,7 +21,7 @@ mvn clean verify sonar:sonar -Dsonar-login-token=TOKEN
 
 ### Update mvnw
 
-```
+```bash
 ./mvnw -N io.takari:maven:0.7.7:wrapper
 ```  
 
@@ -82,3 +82,42 @@ To test how messaging works make this call in java code with appropriate data
 rabbitTemplate.convertAndSend(routingKey, "Prepared message"); 
 ```
 And listener will return to you this message: `Message read from the queue : Prepared message`
+
+### Spring Security
+
+#### If you need activate spring-security set in [application.yml](src/main/resources/application.yml):
+```yml
+jwt:
+  enabled: true
+```
+And add to external configuration file next fields:
+```yml
+jwt:
+  secret: YourSecret
+  expirationInMs: YourExpirationTime
+```
+
+#### If you want to remove extra file of spring security you have to remove next files
+* [security/*](src/main/java/com/cmlteam/cmltemplate/security)
+* [services/CustomerAuthenticationService.java](src/main/java/com/cmlteam/cmltemplate/services/CustomerAuthenticationService.java)
+* [controllers/CustomerAuthenticationController.java](src/main/java/com/cmlteam/cmltemplate/controllers/CustomerAuthenticationController.java)
+* from [entities/User.java](src/main/java/com/cmlteam/cmltemplate/entities/User.java) remove `implements UserDetails` and all `@Override` methods
+* remove useless dependencies from [pom.xml](pom.xml)
+```xml
+    <!-- security: -->
+    <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-config</artifactId>
+        <version>5.1.5.RELEASE</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-web</artifactId>
+        <version>5.1.5.RELEASE</version>
+    </dependency>
+    <dependency>
+        <groupId>io.jsonwebtoken</groupId>
+        <artifactId>jjwt</artifactId>
+        <version>0.9.1</version>
+    </dependency>
+```

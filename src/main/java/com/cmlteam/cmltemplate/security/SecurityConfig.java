@@ -1,6 +1,7 @@
 package com.cmlteam.cmltemplate.security;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,6 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @RequiredArgsConstructor
 @EnableGlobalMethodSecurity(prePostEnabled = true, jsr250Enabled = true, securedEnabled = true)
+@ConditionalOnProperty("jwt.enabled")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
   private final SecurityCustomerFilter securityCustomerFilter;
   private final UserDetailsService userService;
@@ -55,6 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Bean(BeanIds.AUTHENTICATION_MANAGER)
   @Override
+  @ConditionalOnProperty("jwt.enabled")
   public AuthenticationManager authenticationManagerBean() throws Exception {
     return super.authenticationManagerBean();
   }

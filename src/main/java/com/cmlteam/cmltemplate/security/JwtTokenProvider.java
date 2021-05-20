@@ -3,6 +3,7 @@ package com.cmlteam.cmltemplate.security;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -11,6 +12,7 @@ import java.util.Date;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@ConditionalOnProperty("jwt.enabled")
 class JwtTokenProvider {
   private final JwtProperty jwtProperty;
 

@@ -4,6 +4,7 @@ import com.cmlteam.cmltemplate.model.request.AuthenticationRequest;
 import com.cmlteam.cmltemplate.services.CustomerAuthenticationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,7 @@ import javax.validation.Valid;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
+@ConditionalOnProperty("jwt.enabled")
 public class CustomerAuthenticationController {
   private final CustomerAuthenticationService customerAuthenticationService;
 
