@@ -10,6 +10,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -22,12 +25,21 @@ import java.util.Collections;
 @Table(name = "users")
 public class User implements UserDetails {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
   private Long id;
 
-  @Column(name = "email", unique = true)
+  @Column(name = "email", unique = true, nullable = false)
+  @NotBlank
+  @Email
   private String email;
+
+  @Column(name = "email_verified", nullable = false, columnDefinition = "bool default false")
+  private boolean emailVerified;
+
+  @Column(name = "password", nullable = false)
+  @NotBlank
+  private String password;
 
   @Column(name = "first_name")
   private String firstName;
@@ -35,44 +47,38 @@ public class User implements UserDetails {
   @Column(name = "last_name")
   private String lastName;
 
-  @Column(name = "password")
-  private String password;
-
-  @Column(name = "role", nullable = false, columnDefinition = "varchar(255) default USER")
+  @Column(name = "role", nullable = false, columnDefinition = "varchar(255) default 'USER'")
   @Enumerated(value = EnumType.STRING)
+  @NotNull
   private Role role;
-
-  @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return Collections.singleton(new SimpleGrantedAuthority("ROLE_" + role));
-  }
 
   @Override
   public String getUsername() {
     return getEmail();
   }
 
-  // TODO remove mock function
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return Collections.singleton(new SimpleGrantedAuthority("ROLE_" + role.toString()));
+  }
+
   @Override
   public boolean isAccountNonExpired() {
     return true;
   }
 
-  // TODO remove mock function
   @Override
   public boolean isAccountNonLocked() {
     return true;
   }
 
-  // TODO remove mock function
   @Override
   public boolean isCredentialsNonExpired() {
     return true;
   }
 
-  // TODO remove mock function
   @Override
   public boolean isEnabled() {
-    return true;
+    return emailVerified;
   }
 }

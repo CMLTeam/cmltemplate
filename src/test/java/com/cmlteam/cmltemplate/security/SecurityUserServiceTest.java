@@ -28,8 +28,7 @@ class SecurityUserServiceTest {
   @Mock AuthenticationManager authenticationManager;
   @Mock JwtTokenProvider jwtTokenProvider;
   @Mock PasswordEncoder passwordEncoder;
-  @Mock
-  UserRepository securityUserRepository;
+  @Mock UserRepository securityUserRepository;
 
   @InjectMocks SecurityCustomerService securityCustomerService;
 
@@ -92,9 +91,22 @@ class SecurityUserServiceTest {
 
   @Test
   void setPasswordSuccess() {
-    when(securityUserRepository.findById(any(Long.class)))
-        .thenReturn(Optional.of(SAMPLE_User));
+    when(securityUserRepository.findById(any(Long.class))).thenReturn(Optional.of(SAMPLE_User));
 
     assertDoesNotThrow(() -> securityCustomerService.setPassword(-2L, "new-pass"));
+  }
+
+  @Test
+  void confirmEmailForNotExistCustomer() {
+    when(securityUserRepository.findById(any(Long.class))).thenReturn(Optional.empty());
+
+    assertThrows(NotFoundException.class, () -> securityCustomerService.confirmEmail(-2L));
+  }
+
+  @Test
+  void confirmEmailSuccess() {
+    when(securityUserRepository.findById(any(Long.class))).thenReturn(Optional.of(SAMPLE_User));
+
+    assertDoesNotThrow(() -> securityCustomerService.confirmEmail(-2L));
   }
 }

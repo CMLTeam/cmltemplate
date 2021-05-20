@@ -7,9 +7,13 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 class JwtProperty {
-  @Value("${jwt.secret}")
-  private String jwtSecret;
+  private final String jwtSecret;
+  private final Long jwtExpirationInMs;
 
-  @Value("${jwt.expirationInMs}")
-  private int jwtExpirationInMs;
+  public JwtProperty(
+      @Value("${jwt.secret}") String jwtSecret,
+      @Value("${jwt.expirationInMs}") Long jwtExpirationInMs) {
+    this.jwtSecret = jwtSecret;
+    this.jwtExpirationInMs = jwtExpirationInMs;
+  }
 }

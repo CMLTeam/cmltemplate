@@ -47,11 +47,21 @@ public class SecurityCustomerService {
 
   @Transactional
   public void setPassword(Long id, String newPassword) {
-    User user =
+    var user =
         userRepository
             .findById(id)
             .orElseThrow(() -> new NotFoundException("Not found user with id " + id));
     user.setPassword(passwordEncoder.encode(newPassword));
+    userRepository.save(user);
+  }
+
+  @Transactional
+  public void confirmEmail(Long id) {
+    var user =
+        userRepository
+            .findById(id)
+            .orElseThrow(() -> new NotFoundException("Not found user with id " + id));
+    user.setEmailVerified(true);
     userRepository.save(user);
   }
 
