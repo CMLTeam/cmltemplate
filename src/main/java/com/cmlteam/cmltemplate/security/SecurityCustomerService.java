@@ -27,22 +27,22 @@ public class SecurityCustomerService {
   @Transactional
   public String register(String username, String password) {
     if (userRepository.findByEmail(username).isPresent())
-      throw new ConflictException("Customer with such email already exist");
+      throw new ConflictException("User with such email already exist");
     var newUser = User.builder().email(username).password(passwordEncoder.encode(password)).build();
     var savedUser = userRepository.save(newUser);
 
-    return jwtTokenProvider.generateToken(savedUser.getId().toString());
+    return "Bearer " + jwtTokenProvider.generateToken(savedUser.getId().toString());
   }
 
   @Transactional
   public String generateToken(String username, String password) {
     authenticate(username, password);
-    var customer =
+    var user =
         userRepository
             .findByEmail(username)
             .orElseThrow(() -> new NotFoundException("User doesn't exists"));
 
-    return jwtTokenProvider.generateToken(customer.getId().toString());
+    return "Bearer " + jwtTokenProvider.generateToken(user.getId().toString());
   }
 
   @Transactional
@@ -70,7 +70,7 @@ public class SecurityCustomerService {
     try {
       return (User) authentication.getPrincipal();
     } catch (ClassCastException e) {
-      throw new UnauthorizedException("Can't get current customer from context");
+      throw new UnauthorizedException("Can't get current user from context");
     }
   }
 

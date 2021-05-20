@@ -1,9 +1,6 @@
 package com.cmlteam.cmltemplate.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -12,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -35,7 +31,8 @@ public class User implements UserDetails {
   private String email;
 
   @Column(name = "email_verified", nullable = false, columnDefinition = "bool default false")
-  private boolean emailVerified;
+  @Builder.Default
+  private Boolean emailVerified = false;
 
   @Column(name = "password", nullable = false)
   @NotBlank
@@ -49,8 +46,8 @@ public class User implements UserDetails {
 
   @Column(name = "role", nullable = false, columnDefinition = "varchar(255) default 'USER'")
   @Enumerated(value = EnumType.STRING)
-  @NotNull
-  private Role role;
+  @Builder.Default
+  private Role role = Role.USER;
 
   @Override
   public String getUsername() {

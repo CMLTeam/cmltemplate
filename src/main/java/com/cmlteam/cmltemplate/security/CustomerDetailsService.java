@@ -18,6 +18,6 @@ class CustomerDetailsService implements UserDetailsService {
   public UserDetails loadUserByUsername(String username) {
     return userRepository
         .findByEmail(username)
-        .orElseThrow(() -> new ForbiddenException("No customer with email " + username));
+        .orElseThrow(() -> new ForbiddenException("No user with email " + username));
   }
 }

@@ -1,0 +1,68 @@
+# 200 - first time
+# 409 - second time
+POST http://localhost:8080/sign-up
+Content-Type: application/json
+
+{
+  "email": "test@cmlteam.com",
+  "password": "password"
+}
+
+###
+# 200
+POST http://localhost:8080/confirm-email/1
+Content-Type: application/json
+
+{}
+
+###
+# 403
+POST http://localhost:8080/sign-in
+Content-Type: application/json
+
+{
+  "email": "test@cmlteam.com",
+  "password": "password"
+}
+
+###
+# 403
+POST http://localhost:8080/sign-in
+Content-Type: application/json
+
+{
+  "email": "test@cmlteam.com",
+  "password": "password333"
+}
+
+###
+# 200
+POST http://localhost:8080/sign-in
+Content-Type: application/json
+
+{
+  "email": "test@cmlteam.com",
+  "password": "password"
+}
+> {% client.global.set("token", response.body.token); %}
+
+###
+# 200
+GET http://localhost:8080/get-current
+Accept: application/json
+Authorization: {{token}}
+
+###
+# 403
+GET http://localhost:8080/get-current
+Accept: application/json
+Authorization: invalidJWT
+
+###
+# 200
+POST http://localhost:8080/change-password/1/newPassword
+Content-Type: application/json
+
+{}
+
+###
