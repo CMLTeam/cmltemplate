@@ -1,6 +1,5 @@
-package com.cmlteam.cmltemplate.service;
+package com.cmlteam.cmltemplate.security;
 
-import com.cmlteam.cmltemplate.property.JwtProperty;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,24 +11,16 @@ import java.util.Date;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class JwtTokenProvider {
+class JwtTokenProvider {
   private final JwtProperty jwtProperty;
 
-  public String generateShort(String subject) {
+  public String generateToken(String subject) {
     var now = new Date();
     var expiryDate = new Date(now.getTime() + jwtProperty.getJwtExpirationInMs());
     return Jwts.builder()
         .setSubject(subject)
         .setIssuedAt(now)
         .setExpiration(expiryDate)
-        .signWith(SignatureAlgorithm.HS512, jwtProperty.getJwtSecret())
-        .compact();
-  }
-
-  public String generateLong(String subject) {
-    return Jwts.builder()
-        .setSubject(subject)
-        .setIssuedAt(new Date())
         .signWith(SignatureAlgorithm.HS512, jwtProperty.getJwtSecret())
         .compact();
   }

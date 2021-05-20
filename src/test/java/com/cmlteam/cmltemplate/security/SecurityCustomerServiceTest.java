@@ -1,11 +1,9 @@
-package com.cmlteam.cmltemplate.service;
+package com.cmlteam.cmltemplate.security;
 
-import com.cmlteam.cmltemplate.entities.SecurityCustomer;
+import com.cmlteam.cmltemplate.entities.Customer;
 import com.cmlteam.cmltemplate.exceptions.ConflictException;
 import com.cmlteam.cmltemplate.exceptions.NotFoundException;
-import com.cmlteam.cmltemplate.model.request.AuthenticationRequest;
-import com.cmlteam.cmltemplate.model.response.AuthenticationResponse;
-import com.cmlteam.cmltemplate.repository.SecurityCustomerRepository;
+import com.cmlteam.cmltemplate.repository.CustomerRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -24,13 +22,13 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class SecurityCustomerServiceTest {
-  public static final AuthenticationRequest SAMPLE_REQUEST =
-      AuthenticationRequest.builder().email("some@email").password("some-password").build();
-  private final SecurityCustomer SAMPLE_CUSTOMER = SecurityCustomer.builder().id(-1L).build();
+  public static final String SOME_EMAIL = "some@email";
+  public static final String SOME_PASSWORD = "some-password";
+  private final Customer SAMPLE_CUSTOMER = Customer.builder().id(-1L).build();
   @Mock AuthenticationManager authenticationManager;
   @Mock JwtTokenProvider jwtTokenProvider;
   @Mock PasswordEncoder passwordEncoder;
-  @Mock SecurityCustomerRepository securityCustomerRepository;
+  @Mock CustomerRepository securityCustomerRepository;
 
   @InjectMocks SecurityCustomerService securityCustomerService;
 
@@ -39,20 +37,19 @@ class SecurityCustomerServiceTest {
     when(securityCustomerRepository.findByEmail(any(String.class)))
         .thenReturn(Optional.of(SAMPLE_CUSTOMER));
 
-    assertThrows(ConflictException.class, () -> securityCustomerService.register(SAMPLE_REQUEST));
+    assertThrows(
+        ConflictException.class, () -> securityCustomerService.register(SOME_EMAIL, SOME_PASSWORD));
   }
 
   @Test
   void registerSuccess() {
     when(securityCustomerRepository.findByEmail(any(String.class))).thenReturn(Optional.empty());
-    when(securityCustomerRepository.save(any(SecurityCustomer.class))).thenReturn(SAMPLE_CUSTOMER);
+    when(securityCustomerRepository.save(any(Customer.class))).thenReturn(SAMPLE_CUSTOMER);
     when(passwordEncoder.encode(any(String.class))).thenReturn("encode password");
-    when(jwtTokenProvider.generateShort(any(String.class))).thenReturn("new short");
-    when(jwtTokenProvider.generateLong(any(String.class))).thenReturn("new long");
+    when(jwtTokenProvider.generateToken(any(String.class))).thenReturn("new token");
 
-    AuthenticationResponse response = securityCustomerService.register(SAMPLE_REQUEST);
-    assertEquals("new short", response.getShortToken());
-    assertEquals("new long", response.getLongToken());
+    String response = securityCustomerService.register(SOME_EMAIL, SOME_PASSWORD);
+    assertEquals("new token", response);
   }
 
   @Test
@@ -62,7 +59,7 @@ class SecurityCustomerServiceTest {
 
     assertThrows(
         InternalAuthenticationServiceException.class,
-        () -> securityCustomerService.generateToken(SAMPLE_REQUEST));
+        () -> securityCustomerService.generateToken(SOME_EMAIL, SOME_PASSWORD));
   }
 
   @Test
@@ -70,19 +67,18 @@ class SecurityCustomerServiceTest {
     when(securityCustomerRepository.findByEmail(any(String.class))).thenReturn(Optional.empty());
 
     assertThrows(
-        NotFoundException.class, () -> securityCustomerService.generateToken(SAMPLE_REQUEST));
+        NotFoundException.class,
+        () -> securityCustomerService.generateToken(SOME_EMAIL, SOME_PASSWORD));
   }
 
   @Test
   void generateTokenSuccess() {
     when(securityCustomerRepository.findByEmail(any(String.class)))
         .thenReturn(Optional.of(SAMPLE_CUSTOMER));
-    when(jwtTokenProvider.generateShort(any(String.class))).thenReturn("new short");
-    when(jwtTokenProvider.generateLong(any(String.class))).thenReturn("new long");
+    when(jwtTokenProvider.generateToken(any(String.class))).thenReturn("new token");
 
-    AuthenticationResponse response = securityCustomerService.generateToken(SAMPLE_REQUEST);
-    assertEquals("new short", response.getShortToken());
-    assertEquals("new long", response.getLongToken());
+    String response = securityCustomerService.generateToken(SOME_EMAIL, SOME_PASSWORD);
+    assertEquals("new token", response);
   }
 
   @Test

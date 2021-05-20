@@ -1,6 +1,5 @@
-package com.cmlteam.cmltemplate.config;
+package com.cmlteam.cmltemplate.security;
 
-import com.cmlteam.cmltemplate.service.SecurityCustomerFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +20,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @RequiredArgsConstructor
 @EnableGlobalMethodSecurity(prePostEnabled = true, jsr250Enabled = true, securedEnabled = true)
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+class SecurityConfig extends WebSecurityConfigurerAdapter {
   private final SecurityCustomerFilter securityCustomerFilter;
   private final UserDetailsService userService;
 
