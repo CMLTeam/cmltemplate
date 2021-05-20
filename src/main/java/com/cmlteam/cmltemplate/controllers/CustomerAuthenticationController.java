@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Slf4j
 @RequiredArgsConstructor
 @RestController
@@ -14,7 +16,7 @@ public class CustomerAuthenticationController {
   private final CustomerAuthenticationService customerAuthenticationService;
 
   @PostMapping("sign-up")
-  public Object signUp(@RequestBody AuthenticationRequest request) {
+  public Object signUp(@RequestBody @Valid AuthenticationRequest request) {
     return customerAuthenticationService.signUp(request);
   }
 
@@ -24,7 +26,7 @@ public class CustomerAuthenticationController {
   }
 
   @PostMapping("sign-in")
-  public Object signIn(@RequestBody AuthenticationRequest request) {
+  public Object signIn(@RequestBody @Valid AuthenticationRequest request) {
     return customerAuthenticationService.signIn(request);
   }
 
