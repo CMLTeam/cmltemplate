@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.cmlteam</groupId>
     <artifactId>cmltemplate</artifactId>
     <version>0.1.1</version>
-    <modules>
-        <module>core</module>
-        <module>application</module>
-        <module>security</module>
-    </modules>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <name>cmltemplate</name>
     <description>CML Spring Boot Template</description>
@@ -36,7 +31,6 @@
         <java.version>11</java.version>
         <swagger-version>3.0.0</swagger-version>
         <sonar.host.url>https://sonar.cmlteam.com</sonar.host.url>
-        <jjwt-version>0.9.1</jjwt-version>
         <sonar.login>
             <!-- REQUIRED FOR SONAR! -->
             ${sonar-login-token}
@@ -154,6 +148,13 @@
     <build>
         <finalName>cmltemplate</finalName>
         <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <executable>true</executable>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
