@@ -1,7 +1,7 @@
 package com.cmlteam.cmltemplate.security;
 
-import com.cmlteam.cmltemplate.entities.Customer;
-import com.cmlteam.cmltemplate.repository.CustomerRepository;
+import com.cmlteam.cmltemplate.entities.User;
+import com.cmlteam.cmltemplate.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,7 +22,7 @@ import java.util.Optional;
 @Component
 @RequiredArgsConstructor
 class SecurityCustomerFilter extends OncePerRequestFilter {
-  private final CustomerRepository customerRepository;
+  private final UserRepository userRepository;
   private final JwtTokenProvider jwtTokenProvider;
 
   @Override
@@ -31,7 +31,7 @@ class SecurityCustomerFilter extends OncePerRequestFilter {
       throws ServletException, IOException {
     getJwtFromRequest(request)
         .flatMap(this::getAuthCustomerFromToken)
-        .ifPresent(customer -> setContext(request, customer));
+        .ifPresent(user -> setContext(request, user));
     filterChain.doFilter(request, response);
   }
 
@@ -43,17 +43,17 @@ class SecurityCustomerFilter extends OncePerRequestFilter {
     return Optional.empty();
   }
 
-  private Optional<Customer> getAuthCustomerFromToken(String jwt) {
+  private Optional<User> getAuthCustomerFromToken(String jwt) {
     if (jwtTokenProvider.isValid(jwt)) {
       var id = Long.valueOf(jwtTokenProvider.getSubject(jwt));
-      return customerRepository.findById(id).filter(Customer::isEnabled);
+      return userRepository.findById(id).filter(User::isEnabled);
     }
     return Optional.empty();
   }
 
-  private void setContext(HttpServletRequest request, Customer customer) {
+  private void setContext(HttpServletRequest request, User user) {
     var authentication1 =
-        new UsernamePasswordAuthenticationToken(customer, null, customer.getAuthorities());
+        new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
     authentication1.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
     var authentication = authentication1;
     SecurityContextHolder.getContext().setAuthentication(authentication);

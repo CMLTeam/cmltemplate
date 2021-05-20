@@ -20,7 +20,7 @@ import java.util.Collections;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "users")
-public class Customer implements UserDetails {
+public class User implements UserDetails {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "id")
@@ -38,8 +38,9 @@ public class Customer implements UserDetails {
   @Column(name = "password")
   private String password;
 
-  @Column(name = "role")
-  private String role;
+  @Column(name = "role", nullable = false, columnDefinition = "varchar(255) default USER")
+  @Enumerated(value = EnumType.STRING)
+  private Role role;
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
