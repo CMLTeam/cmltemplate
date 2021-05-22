@@ -1,4 +1,4 @@
-package com.cmlteam.cmltemplate.model.request;
+package com.cmlteam.cmltemplate.security;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

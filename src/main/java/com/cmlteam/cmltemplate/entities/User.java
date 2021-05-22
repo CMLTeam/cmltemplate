@@ -32,7 +32,7 @@ public class User implements UserDetails {
 
   @Column(name = "email_verified", nullable = false, columnDefinition = "bool default false")
   @Builder.Default
-  private Boolean emailVerified = false;
+  private boolean emailVerified = false;
 
   @Column(name = "password", nullable = false)
   @NotBlank

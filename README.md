@@ -100,7 +100,6 @@ jwt:
 #### If you want to remove extra file of spring security you have to remove next files
 * [security/*](src/main/java/com/cmlteam/cmltemplate/security)
 * [services/CustomerAuthenticationService.java](src/main/java/com/cmlteam/cmltemplate/services/CustomerAuthenticationService.java)
-* [controllers/CustomerAuthenticationController.java](src/main/java/com/cmlteam/cmltemplate/controllers/CustomerAuthenticationController.java)
 * from [entities/User.java](src/main/java/com/cmlteam/cmltemplate/entities/User.java) remove `implements UserDetails` and all `@Override` methods
 * remove useless dependencies from [pom.xml](pom.xml)
 ```xml

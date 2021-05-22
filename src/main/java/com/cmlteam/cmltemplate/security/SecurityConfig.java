@@ -57,7 +57,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Bean(BeanIds.AUTHENTICATION_MANAGER)
   @Override
-  @ConditionalOnProperty("jwt.enabled")
   public AuthenticationManager authenticationManagerBean() throws Exception {
     return super.authenticationManagerBean();
   }
