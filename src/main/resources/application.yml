@@ -40,11 +40,6 @@ spring:
           socketFactory:
             class: "javax.net.ssl.SSLSocketFactory"
 
-jwt:
-  enabled: false
-  secret: # EXTERNAL
-  expirationInMs: # EXTERNAL
-
 #logging:
 #  level:
 #    org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: TRACE

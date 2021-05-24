@@ -1,4 +1,4 @@
-package com.cmlteam.cmltemplate.model.response;
+package com.cmlteam.cmltemplate.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
