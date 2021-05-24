@@ -1,6 +1,6 @@
 package com.cmlteam.cmltemplate.controllers;
 
-import com.cmlteam.cmltemplate.model.ServerStatus;
+import com.cmlteam.cmltemplate.model.TestWsUser;
 import com.cmlteam.cmltemplate.services.SampleService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -31,11 +31,11 @@ public class MainController {
   @GetMapping(value = "testws")
   public String testws() {
     RestTemplate template = new RestTemplate();
-    ServerStatus status =
+    TestWsUser status =
         Objects.requireNonNull(
             template.getForObject(
-                "https://l2c1x1.com/services/misc/server-stats", ServerStatus.class));
-    return "" + status.getTotalAccounts();
+                "https://jsonplaceholder.typicode.com/users/1", TestWsUser.class));
+    return "" + status.getId();
   }
 
   @ApiOperation(value = "Show the DB version")
