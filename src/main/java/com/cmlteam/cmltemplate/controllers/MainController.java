@@ -1,6 +1,6 @@
 package com.cmlteam.cmltemplate.controllers;
 
-import com.cmlteam.cmltemplate.model.ServerStatus;
+import com.cmlteam.cmltemplate.model.response.ServerStatus;
 import com.cmlteam.cmltemplate.services.SampleService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
