@@ -49,7 +49,7 @@ class SecurityUserServiceTest {
     when(jwtTokenProvider.generateToken(any(String.class))).thenReturn("new token");
 
     String response = securityCustomerService.register(SOME_EMAIL, SOME_PASSWORD);
-    assertEquals("new token", response);
+    assertEquals("Bearer new token", response);
   }
 
   @Test
@@ -78,7 +78,7 @@ class SecurityUserServiceTest {
     when(jwtTokenProvider.generateToken(any(String.class))).thenReturn("new token");
 
     String response = securityCustomerService.generateToken(SOME_EMAIL, SOME_PASSWORD);
-    assertEquals("new token", response);
+    assertEquals("Bearer new token", response);
   }
 
   @Test
