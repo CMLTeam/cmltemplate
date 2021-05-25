@@ -1,4 +1,4 @@
-package com.cmlteam.cmltemplate.model.response;
+package com.cmlteam.cmltemplate.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -11,6 +11,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ServerStatus {
-  private int totalAccounts;
+public class TestWsUser {
+  private int id;
+  private String name;
+  private String email;
+  private String phone;
 }
