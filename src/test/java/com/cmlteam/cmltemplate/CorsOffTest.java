@@ -1,6 +1,7 @@
 package com.cmlteam.cmltemplate;
 
 import com.cmlteam.cmltemplate.config.GlobalCorsConfig;
+import com.cmlteam.cmltemplate.security.SecurityPermitAllConfig;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest()
-@ContextConfiguration(classes = {TestController.class, GlobalCorsConfig.class})
+@ContextConfiguration(
+    classes = {TestController.class, GlobalCorsConfig.class, SecurityPermitAllConfig.class})
 public class CorsOffTest {
   @Autowired private MockMvc mockMvc;
 
