@@ -1,5 +1,6 @@
 package com.cmlteam.cmltemplate;
 
+import com.cmlteam.cmltemplate.security.SecurityPermitAllConfig;
 import com.cmlteam.cmltemplate.controllers.MainController;
 import com.cmlteam.cmltemplate.services.SampleService;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(MainController.class)
-@ContextConfiguration(classes = {SampleService.class, MainController.class})
+@ContextConfiguration(classes = {SampleService.class, MainController.class, SecurityPermitAllConfig.class})
 public class MainControllerTest {
   @Autowired private MockMvc mockMvc;
 
