@@ -20,29 +20,42 @@ Then, run this command in project root folder:
 ```bash
 mvn clean verify sonar:sonar -Dsonar-login-token=TOKEN
 ```                                                    
+                      
+### Makesure
+
+This project includes the lightweight build system [makesure](https://github.com/xonixx/makesure).
+
+Nothing is needed to install. The tool is bundled as a single script `makesure` in root folder.
+The build script is located in [Makesurefile](Makesurefile).
+
+Issue `./makesure -l` to show a list of available goals.
 
 ### Update mvnw
 
 ```
-./mvnw -N io.takari:maven:0.7.7:wrapper
+./makesure mvnw_update
 ```  
 
 ### Swagger
 
 Swagger UI available at http://localhost:8080/swagger-ui/index.html 
 
+### Enable global CORS
+
+Run either with `--cors.enabled=true` program argument OR with `CORS_ENABLED=true` environment variable.
 
 ### MySQL
 
 Run DB
 
 ```
-docker-compose -f docker-compose-mysql.yml up
+./makesure mysqld
 ```
 
 Connect via CLI:
+
 ```
-docker exec -it mysql8 mysql cmltemplate -ucmltemplate -pcmltemplate
+./makesure mysql
 ``` 
 
 ### PostgreSQL
@@ -50,17 +63,13 @@ docker exec -it mysql8 mysql cmltemplate -ucmltemplate -pcmltemplate
 Run DB
 
 ```
-docker-compose -f docker-compose-postgresql.yml up
+./makesure postgresd
 ```
 
 Connect via CLI:
 ```                                        
-docker exec -it postgres13 psql --username=cmltemplate --dbname=cmltemplate
+./makesure postgres
 ``` 
-
-### Enable global CORS
-
-Run either with `--cors.enabled=true` program argument OR with `CORS_ENABLED=true` environment variable. 
 
 ### RabbitMQ
             
@@ -69,7 +78,7 @@ If you need to develop with RabbitMQ, in [application.yml](src/main/resources/ap
 Then run RabbitMQ server:
 
 ```
-docker-compose -f docker-compose-rabbitmq.yml up
+./makesure rabbitmq
 ```
 
 Admin UI for RabbitMQ can be accessed by link http://localhost:15672/. The default credentials is: 
