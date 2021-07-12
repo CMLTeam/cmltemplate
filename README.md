@@ -3,7 +3,7 @@
 [![Unit Tests](https://github.com/CMLTeam/cmltemplate/actions/workflows/run-tests.yml/badge.svg)](https://github.com/CMLTeam/cmltemplate/actions/workflows/run-tests.yml)
 
 ## Usage
-Use this template as a base for your Spring Boot app @ CML
+Use this template as a base for your Spring Boot app @ [CML](https://www.cmlteam.com)
 
 ### Run
 ```bash
@@ -89,7 +89,7 @@ password: guest
 ```
 
 To test how messaging works make this call in java code with appropriate data
-```
+```java
 rabbitTemplate.convertAndSend(routingKey, "Prepared message"); 
 ```
 And listener will return to you this message: `Message read from the queue : Prepared message`
