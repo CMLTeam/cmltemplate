@@ -84,3 +84,7 @@ To test how messaging works make this call in java code with appropriate data
 rabbitTemplate.convertAndSend(routingKey, "Prepared message"); 
 ```
 And listener will return to you this message: `Message read from the queue : Prepared message`
+
+### Useful links
+
+- [Modern Java/JVM Build Practices](https://github.com/binkley/modern-java-practices)
