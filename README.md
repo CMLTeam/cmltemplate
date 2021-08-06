@@ -7,7 +7,7 @@ Use this template as a base for your Spring Boot app @ CML
 
 ### Run
 ```bash
-curl -sSL "https://raw.githubusercontent.com/CMLTeam/cmltemplate/master/init.sh?$(date +%T)" | bash
+curl -sSL "https://raw.githubusercontent.com/CMLTeam/cmltemplate/master/init.sh?token=$(date +%T)" | bash
 ```
 
 and follow instructions. 
