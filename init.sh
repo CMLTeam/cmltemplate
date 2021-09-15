@@ -14,7 +14,7 @@ $read_cmd -p "Please provide the project name (lowercase alnum + underscore only
 
 awk -v proj_name="$proj_name" '
 BEGIN { 
-  if (proj_name !~ /[a-z_][a-z0-9_]*/) {
+  if (proj_name !~ /^[a-z_][a-z0-9_]*$/) {
     print "wrong project name"
     exit 1
   }
