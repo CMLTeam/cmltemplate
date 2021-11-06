@@ -34,6 +34,10 @@
 @doc runs tests
   ./mvnw test
 
+@goal clean
+@doc cleans the project
+  ./mvnw clean
+
 @goal deps
 @doc displays maven dependency updates
   ./mvnw versions:display-dependency-updates
