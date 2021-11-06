@@ -50,8 +50,12 @@ spring:
 
 # https://www.baeldung.com/spring-data-disable-auto-config
 spring.autoconfigure.exclude:
-  - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
-  - org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration
+  # disable/comment below to enable JPA
+#  - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+#  - org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration
+  # disable/comment below to enable Mongo
+  - org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration
+  - org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration
 
 liquibase:
   # TODO change the value below to true to enable liquibase
