@@ -50,6 +50,7 @@ download() {
     echo "Extracting..."
     echo
 
+    # TODO redo with tar
     unzip -qq "$tmp_zip" -d "$tmp_dir"
     mv "$tmp_dir/cmltemplate-master" "$proj_path"
 
@@ -62,6 +63,7 @@ prepare() {
 
     local TPL=cmltemplate
     local FILES="
+    Makesurefile
     create_db.sh
     docker-compose-*.yml
     deploy.sh
