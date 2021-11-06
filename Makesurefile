@@ -21,14 +21,18 @@
 @doc connects to Postgresql CLI
   docker exec -it postgres13 psql --username=cmltemplate --dbname=cmltemplate
 
+@goal rabbitmq
+@doc runs RabbitMQ server
+  docker-compose -f docker-compose-rabbitmq.yml up
+
+@goal mongod
+@doc runs Mongodb server
+  docker-compose -f docker-compose-mongo.yml up
+
 @goal run
 @doc runs the app
   export JAVA_HOME=~/.sdkman/candidates/java/current/
   ./mvnw spring-boot:run
-
-@goal rabbitmq
-@doc runs RabbitMQ server
-  docker-compose -f docker-compose-rabbitmq.yml up
 
 @goal test
 @doc runs tests

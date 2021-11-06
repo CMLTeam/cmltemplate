@@ -1,0 +1,10 @@
+# https://hub.docker.com/_/mongo
+version: '3.1'
+
+services:
+  mongo:
+    image: mongo:5.0
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: cmltemplate
+      MONGO_INITDB_ROOT_PASSWORD: cmltemplate
