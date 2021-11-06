@@ -20,6 +20,10 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQL10Dialect
     hibernate:
       ddl-auto: update
+  data:
+    mongodb:
+      database: cmltemplate
+      port: 47017
   rabbitmq:
     host: 127.0.0.1
     port: 5672
@@ -43,6 +47,15 @@ spring:
 #logging:
 #  level:
 #    org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: TRACE
+
+# https://www.baeldung.com/spring-data-disable-auto-config
+spring.autoconfigure.exclude:
+  # disable/comment below to enable JPA
+#  - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+#  - org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration
+  # disable/comment below to enable Mongo
+  - org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration
+  - org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration
 
 liquibase:
   # TODO change the value below to true to enable liquibase
