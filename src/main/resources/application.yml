@@ -48,6 +48,11 @@ spring:
 #  level:
 #    org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: TRACE
 
+# https://www.baeldung.com/spring-data-disable-auto-config
+spring.autoconfigure.exclude:
+  - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+  - org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration
+
 liquibase:
   # TODO change the value below to true to enable liquibase
   manual: false
