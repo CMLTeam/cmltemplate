@@ -2,30 +2,38 @@
 @options silent
 
 @goal mvnw_update
-@doc Updates mvnw
+@doc updates mvnw
   ./mvnw -N io.takari:maven:0.7.7:wrapper
 
 @goal mysqld
-@doc Run Mysql server
+@doc runs Mysql server
   docker-compose -f docker-compose-mysql.yml up
 
 @goal mysql
-@doc Connect Mysql CLI
+@doc connects to Mysql CLI
   docker exec -it mysql8 mysql cmltemplate -ucmltemplate -pcmltemplate
 
 @goal postgresd
-@doc Run Postgresql server
+@doc runs Postgresql server
   docker-compose -f docker-compose-postgresql.yml up
 
 @goal postgres
-@doc Connect Postgresql CLI
+@doc connects to Postgresql CLI
   docker exec -it postgres13 psql --username=cmltemplate --dbname=cmltemplate
 
 @goal run
-@doc Run the app
+@doc runs the app
   export JAVA_HOME=~/.sdkman/candidates/java/current/
   ./mvnw spring-boot:run
 
 @goal rabbitmq
-@doc Run RabbitMQ server
+@doc runs RabbitMQ server
   docker-compose -f docker-compose-rabbitmq.yml up
+
+@goal test
+@doc runs tests
+  ./mvnw test
+
+@goal deps
+@doc displays maven dependency updates
+  ./mvnw versions:display-dependency-updates
