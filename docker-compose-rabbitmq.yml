@@ -1,3 +1,4 @@
+# Documentation: https://hub.docker.com/_/rabbitmq
 version: '3.3'
 services:
   rabbit1:
