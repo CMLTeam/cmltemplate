@@ -10,7 +10,7 @@ services:
       POSTGRES_DB: 'cmltemplate'
     ports:
       # <Port exposed> : <PG Port running inside container>
-      - '25432:5432'
+      - '127.0.0.1:25432:5432'
     expose:
       # Opens PG port on the container to other services
       - '5432'

@@ -3,11 +3,12 @@ version: '3.1'
 
 services:
   mongo:
-    image: mongo:5.0
+    image: mongo:4.4
     restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: cmltemplate
-      MONGO_INITDB_ROOT_PASSWORD: cmltemplate
+## we don't use auth for simplicity
+##    environment:
+##      MONGO_INITDB_ROOT_USERNAME: cmltemplate
+##      MONGO_INITDB_ROOT_PASSWORD: cmltemplate
     ports:
       # https://docs.mongodb.com/manual/reference/default-mongodb-port/
-      - '47017:27017' # TODO need to make it bind to localhost, not 0.0.0.0
+      - '127.0.0.1:47017:27017'

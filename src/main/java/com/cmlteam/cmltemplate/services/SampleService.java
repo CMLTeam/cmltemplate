@@ -28,7 +28,7 @@ public class SampleService {
 
   @PostConstruct
   public void test() {
-//    System.out.println(getDbVersion());
-//    System.out.println("MONGO: " + getMongoVersion());
+    System.out.println(getDbVersion());
+    System.out.println("MONGO: " + getMongoVersion());
   }
 }
