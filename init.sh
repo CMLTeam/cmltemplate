@@ -10,8 +10,17 @@ read_cmd="read -u 3"
 declare proj_name
 declare proj_descr
 
-# TODO add validation to proj_name - should be alnum + underscore
-$read_cmd -p "Please provide the project name (alnum + underscore only): " proj_name
+$read_cmd -p "Please provide the project name (lowercase alnum + underscore only): " proj_name
+
+awk -v proj_name="$proj_name" '
+BEGIN { 
+  if (proj_name !~ /^[a-z_][a-z0-9_]*$/) {
+    print "wrong project name"
+    exit 1
+  }
+}
+'
+
 $read_cmd -p "Please enter project description: " proj_descr
 
 fail() {
@@ -41,6 +50,7 @@ download() {
     echo "Extracting..."
     echo
 
+    # TODO redo with tar
     unzip -qq "$tmp_zip" -d "$tmp_dir"
     mv "$tmp_dir/cmltemplate-master" "$proj_path"
 
@@ -53,6 +63,7 @@ prepare() {
 
     local TPL=cmltemplate
     local FILES="
+    Makesurefile
     create_db.sh
     docker-compose-*.yml
     deploy.sh
