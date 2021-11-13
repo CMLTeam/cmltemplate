@@ -2,12 +2,13 @@
 version: '3.3'
 services:
   rabbit1:
+    container_name: cmltemplate-rabbit
     image: rabbitmq:3-management
     hostname: rabbit1
     environment:
       RABBITMQ_ERLANG_COOKIE: "secret string"
       RABBITMQ_NODENAME: rabbit1
-    volumes:
+    volumes: # TODO VVV-- this is wrong
       - "./rabbitmq.config:/etc/rabbitmq/rabbitmq.config"
       - "./definitions.json:/etc/rabbitmq/definitions.json"
     ports:

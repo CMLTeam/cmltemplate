@@ -1,3 +1,8 @@
+@define PROJ_NAME="cmltemplate"
+@define MYSQL="cmltemplate-mysql"
+@define POSTGRES="cmltemplate-postgres"
+@define MONGO="cmltemplate-mongo"
+@define RABBIT="cmltemplate-rabbit"
 
 @options silent
 
@@ -7,27 +12,31 @@
 
 @goal mysqld
 @doc runs Mysql server
-  docker-compose -f docker-compose-mysql.yml up
+  docker-compose --project-name "$MYSQL" -f docker-compose/mysql.yml up
 
 @goal mysql
 @doc connects to Mysql CLI
-  docker exec -it mysql8 mysql cmltemplate -ucmltemplate -pcmltemplate
+  docker exec -it "$MYSQL" mysql "$PROJ_NAME" -u"$PROJ_NAME" -p"$PROJ_NAME"
 
 @goal postgresd
 @doc runs Postgresql server
-  docker-compose -f docker-compose-postgresql.yml up
+  docker-compose --project-name "$POSTGRES" -f docker-compose/postgresql.yml up
 
 @goal postgres
 @doc connects to Postgresql CLI
-  docker exec -it postgres13 psql --username=cmltemplate --dbname=cmltemplate
+  docker exec -it "$POSTGRES" psql --username="$PROJ_NAME" --dbname="$PROJ_NAME"
 
 @goal rabbitmq
 @doc runs RabbitMQ server
-  docker-compose -f docker-compose-rabbitmq.yml up
+  docker-compose --project-name "$RABBIT" -f docker-compose/rabbitmq.yml up
 
 @goal mongod
 @doc runs Mongodb server
-  docker-compose -f docker-compose-mongo.yml up
+  docker-compose --project-name "$MONGO" -f docker-compose/mongo.yml up
+
+@goal mongo
+@doc connects to mongo CLI
+  docker exec -it "$MONGO" mongo
 
 @goal run
 @doc runs the app
