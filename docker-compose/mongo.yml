@@ -1,0 +1,16 @@
+# https://hub.docker.com/_/mongo
+version: '3.1'
+
+services:
+  mongo:
+    container_name: cmltemplate-mongo
+    image: mongo:4.4
+    restart: always
+    environment:
+      WE_DONT_USE_AUTH: for_simplicity
+    ##      MONGO_INITDB_ROOT_USERNAME: cmltemplate
+    ##      MONGO_INITDB_ROOT_PASSWORD: cmltemplate
+    ports:
+      # https://docs.mongodb.com/manual/reference/default-mongodb-port/
+      - '127.0.0.1:47017:27017'
+# TODO persistence

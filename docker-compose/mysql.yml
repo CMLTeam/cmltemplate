@@ -2,7 +2,7 @@
 version: '3.3'
 services:
   db-mysql8:
-    container_name: mysql8
+    container_name: cmltemplate-mysql
     image: mysql:8.0
     restart: always
     command: >-
@@ -23,8 +23,9 @@ services:
       # Opens port 3306 on the container to other services
       - '3306'
       # Where our data will be persisted
-    volumes:
-      - mysql8:/var/lib/mysql
+#    volumes:
+#      - mysql8:/var/lib/mysql
 # Names our volume
-volumes:
-  mysql8:
+#volumes:
+#  mysql8:
+# TODO persistence

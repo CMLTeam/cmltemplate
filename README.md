@@ -71,6 +71,19 @@ Connect via CLI:
 ./makesure postgres
 ``` 
 
+### MongoDB
+
+Run DB
+
+```
+./makesure mongod
+```
+
+Connect via CLI:
+```                                        
+./makesure mongo
+``` 
+
 ### RabbitMQ
             
 If you need to develop with RabbitMQ, in [application.yml](src/main/resources/application.yml) set the property `rabbitmq.enabled` to `true`.
