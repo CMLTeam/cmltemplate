@@ -13,4 +13,13 @@ services:
     ports:
       # https://docs.mongodb.com/manual/reference/default-mongodb-port/
       - '127.0.0.1:47017:27017'
-# TODO persistence
+    # Where our data will be persisted
+    volumes:
+      - mongo_data:/data/db
+      - mongo_configdb:/data/configdb
+# Names our volume
+volumes:
+  mongo_data:
+    driver: local
+  mongo_configdb:
+    driver: local

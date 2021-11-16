@@ -11,6 +11,9 @@ services:
       --default-authentication-plugin=mysql_native_password
       --character-set-server=utf8mb4
       --collation-server=utf8mb4_unicode_ci
+      --slow_query_log=1
+      --slow_query_log_file=/var/lib/mysql/slow.log
+      --long_query_time=10
     environment:
       MYSQL_DATABASE: 'cmltemplate'
       MYSQL_USER: 'cmltemplate'
@@ -23,9 +26,10 @@ services:
       # Opens port 3306 on the container to other services
       - '3306'
       # Where our data will be persisted
-#    volumes:
-#      - mysql8:/var/lib/mysql
+    volumes:
+      - mysql_data:/var/lib/mysql
 # Names our volume
-#volumes:
-#  mysql8:
-# TODO persistence
+volumes:
+  # volume name will be 'cmltemplate-mysql_mysql_data'
+  mysql_data:
+    driver: local
