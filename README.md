@@ -43,6 +43,10 @@ Swagger UI available at http://localhost:8080/swagger-ui/index.html
 ### Enable global CORS
 
 Run either with `--cors.enabled=true` program argument OR with `CORS_ENABLED=true` environment variable.
+    
+### Docker
+
+See [README-docker.md](docker-compose/README-docker.md)
 
 ### MySQL
 

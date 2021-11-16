@@ -38,8 +38,18 @@ cd "$(docker volume inspect cmltemplate-mongo_mongo_data \
 ```
 
 You might need `sudo` though to access the files.
+   
+## Services configuration
 
-## One file vs many
+We considered an approach to map the config files of a service to the host folder for ease of change. But this causes more complexity than we want:
+  - Aforementioned permissions issues
+  - Unneeded flexibility that can be unsustainable
+
+So instead it's better to try to configure the services via it's .yml file:
+  - environment vars
+  - command (i.e. see how we've set up the slow log for [mysql](mysql.yml))
+
+## One .yml file vs many
 
 TODO, see https://stackoverflow.com/questions/30233105/docker-compose-up-for-only-certain-containers
 
