@@ -1,4 +1,43 @@
 # Docker strategy
+               
+## Where to store data
+
+Available options
+
+- In container (default)
+  - Cons:
+    - not reliable: data loss on container re-creation
+    - hard to use: not easy to read/write data
+- In docker volume
+  - Cons:
+    - hard to use: not easy to read/write data
+- In mounted folder
+  - Cons:
+    - pollutes work folder
+    - issues with permissions in mounted folder
+
+Based on considerations above we chose to use named local volumes.
+
+This is how it looks:
+
+```
+$ docker volume ls
+DRIVER    VOLUME NAME
+local     cmltemplate-mongo_mongo_configdb
+local     cmltemplate-mongo_mongo_data
+local     cmltemplate-rabbit_rabbit_data
+```
+
+(In real usage it will be `real_project_name` instead of `cmltemplate`).
+
+If you want to reach physical location of a volume's data just do
+
+```
+cd "$(docker volume inspect cmltemplate-mongo_mongo_data \
+    | jq -r '.[0].Mountpoint')"
+```
+
+You might need `sudo` though to access the files.
 
 ## One file vs many
 
