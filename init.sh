@@ -28,15 +28,10 @@ fail() {
     exit 1
 }
 
-if [[ -z $PROJ_PATH ]]
+proj_path="$(pwd)/$proj_name"
+if [[ -e "$proj_path" ]]
 then
-  proj_path="$(pwd)/$proj_name"
-  if [[ -e "$proj_path" ]]
-  then
-      fail "Path $proj_path exists already."
-  fi
-else
-  proj_path="$(cd "$PROJ_PATH"; pwd)"
+    fail "Path $proj_path exists already."
 fi
 
 download() {
