@@ -29,6 +29,7 @@ fail() {
 }
 
 if [[ -z $PROJ_PATH ]]
+then
   proj_path="$(pwd)/$proj_name"
   if [[ -e "$proj_path" ]]
   then
