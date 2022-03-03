@@ -65,7 +65,7 @@ prepare() {
     local FILES="
     Makesurefile
     create_db.sh
-    docker-compose-*.yml
+    docker-compose/*.yml
     deploy.sh
     pom.xml
     src/main/resources/application.yml
