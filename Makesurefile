@@ -1,10 +1,10 @@
+@options silent
+
 @define PROJ_NAME="cmltemplate"
 @define MYSQL="cmltemplate-mysql"
 @define POSTGRES="cmltemplate-postgres"
 @define MONGO="cmltemplate-mongo"
 @define RABBIT="cmltemplate-rabbit"
-
-@options silent
 
 @goal mvnw_update
 @doc updates mvnw
