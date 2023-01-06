@@ -3,7 +3,7 @@ name: Unit Tests
 on: [ push ]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,5 +16,7 @@ jobs:
           distribution: "temurin"
           java-version: 17
           cache: "maven"
-      - name: "Test with Maven"
-        run: ./mvnw -B test
+#      - name: "Test with Maven"
+#        run: ./mvnw -B test
+      - name: "Run tests with Maven & Sonar"
+        run: ./mvnw --batch-mode -Pcoverage verify sonar:sonar -Dsonar.login=${{ secrets.SONAR_LOGIN }}
