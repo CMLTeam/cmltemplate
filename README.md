@@ -18,8 +18,10 @@ The project folder with scaffolded code will be created in current folder.
 First, log into [SonarQube UI](https://sonar.cmlteam.com) and generate an access token for the project.
 Then, run this command in project root folder:
 ```bash
-mvn clean verify sonar:sonar -Dsonar-login-token=TOKEN
-```                                                    
+./mvnw clean verify sonar:sonar -Dsonar.login=TOKEN
+```
+
+Sonar for cmltemplate: [link](https://sonar.cmlteam.com/dashboard?id=cmltemplate).
                       
 ### Makesure
 
