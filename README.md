@@ -2,8 +2,14 @@
 
 [![Unit Tests](https://github.com/CMLTeam/cmltemplate/actions/workflows/run-tests.yml/badge.svg)](https://github.com/CMLTeam/cmltemplate/actions/workflows/run-tests.yml)
 
-## Usage
 Use this template as a base for your Spring Boot app @ [CML](https://www.cmlteam.com)
+   
+### Versions
+
+| Spring Boot | Java | MySQL | Postgres |
+|-------------|------|-------|----------|
+| 3.x         | 17   | TODO  | TODO     |
+
 
 ### Run
 ```bash

@@ -132,7 +132,7 @@
         <dependency>
             <groupId>com.github.xonixx</groupId>
             <artifactId>spring-web-requests-logging</artifactId>
-            <version>057935e</version>
+            <version>057935e</version><!-- TODO https://github.com/xonixx/spring-web-requests-logging/issues/10 -->
         </dependency>
         <dependency>
             <!-- we need this 'coz the v2 lacks pre-signed TODO in https://github.com/CMLTeam/cmltemplate/issues/72 -->
