@@ -1,0 +1,12 @@
+
+POST localhost:8080/user
+
+###
+
+POST localhost:8080/user
+Content-Type: application/json
+
+{
+  "name": "",
+  "age": -42
+}
