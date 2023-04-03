@@ -3,6 +3,7 @@ package com.cmlteam.cmltemplate.controllers;
 import com.cmlteam.cmltemplate.model.TestWsUser;
 import com.cmlteam.cmltemplate.services.SampleService;
 import io.swagger.annotations.ApiOperation;
+import jakarta.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-import javax.validation.Valid;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -55,7 +55,7 @@ public class MainController {
 
   @ApiOperation(value = "Test POST endpoint with validation")
   @PostMapping(value = "/user")
-  public UserResp testPost(@RequestBody @Valid UserReq userReq) {
+  public UserResp testPost(@Valid @RequestBody UserReq userReq) {
     return new UserResp(true);
   }
 }
