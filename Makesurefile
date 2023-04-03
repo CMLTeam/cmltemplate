@@ -7,52 +7,52 @@
 @define RABBIT="cmltemplate-rabbit"
 
 @goal mvnw_update
-@doc updates mvnw
+@doc 'updates mvnw'
   ./mvnw -N io.takari:maven:0.7.7:wrapper
 
 @goal mysqld
-@doc runs Mysql server
+@doc 'runs Mysql server'
   docker-compose --project-name "$MYSQL" -f docker-compose/mysql.yml up
 
 @goal mysql
-@doc connects to Mysql CLI
+@doc 'connects to Mysql CLI'
   docker exec -it "$MYSQL" mysql "$PROJ_NAME" -u"$PROJ_NAME" -p"$PROJ_NAME"
 
 @goal postgresd
-@doc runs Postgresql server
+@doc 'runs Postgresql server'
   docker-compose --project-name "$POSTGRES" -f docker-compose/postgresql.yml up
 
 @goal postgres
-@doc connects to Postgresql CLI
+@doc 'connects to Postgresql CLI'
   docker exec -it "$POSTGRES" psql --username="$PROJ_NAME" --dbname="$PROJ_NAME"
 
 @goal rabbitmq
-@doc runs RabbitMQ server
+@doc 'runs RabbitMQ server'
   docker-compose --project-name "$RABBIT" -f docker-compose/rabbitmq.yml up
 
 @goal mongod
-@doc runs Mongodb server
+@doc 'runs Mongodb server'
   docker-compose --project-name "$MONGO" -f docker-compose/mongo.yml up
 
 @goal mongo
-@doc connects to mongo CLI
+@doc 'connects to mongo CLI'
   docker exec -it "$MONGO" mongo
 
 @goal run
-@doc runs the app
+@doc 'runs the app'
   export JAVA_HOME=~/.sdkman/candidates/java/current/
   ./mvnw spring-boot:run
 
 @goal test
-@doc runs tests
+@doc 'runs tests'
   ./mvnw test
 
 @goal clean
-@doc cleans the project
+@doc 'cleans the project'
   ./mvnw clean
 
 @goal deps
-@doc displays maven dependency updates
+@doc 'displays maven dependency updates'
   ./mvnw versions:display-dependency-updates
 
 @goal dependency_tree
