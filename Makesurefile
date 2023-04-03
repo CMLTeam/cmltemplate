@@ -54,3 +54,7 @@
 @goal deps
 @doc displays maven dependency updates
   ./mvnw versions:display-dependency-updates
+
+@goal dependency_tree
+@doc 'display dependency tree'
+  ./mvnw dependency:tree
