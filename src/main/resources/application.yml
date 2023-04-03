@@ -4,8 +4,8 @@ server:
 
 spring:
   datasource:
-    #url: jdbc:mysql://localhost:23306/cmltemplate?useUnicode=true&rewriteBatchedStatements=true&useSSL=false
-    url: jdbc:postgresql://localhost:25432/cmltemplate
+    url: jdbc:mysql://localhost:23306/cmltemplate?useUnicode=true&rewriteBatchedStatements=true&useSSL=false
+#    url: jdbc:postgresql://localhost:25432/cmltemplate
     username: cmltemplate
     password: cmltemplate
     type: com.zaxxer.hikari.HikariDataSource
@@ -14,10 +14,10 @@ spring:
       maximum-pool-size: 100
       minimum-idle: 40
   jpa:
-    #database: mysql
-    #database-platform: org.hibernate.dialect.MySQL8Dialect
-    database: postgresql
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+#    database: postgresql
+#    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
   data:
