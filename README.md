@@ -8,7 +8,7 @@ Use this template as a base for your Spring Boot app @ [CML](https://www.cmlteam
 
 | Spring Boot | Java | MySQL | Postgres |
 |-------------|------|-------|----------|
-| 3.x         | 17   | TODO  | TODO     |
+| 3.x         | 17   | TODO  | 13+      |
 
 
 ### Run

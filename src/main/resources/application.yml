@@ -17,7 +17,7 @@ spring:
     #database: mysql
     #database-platform: org.hibernate.dialect.MySQL8Dialect
     database: postgresql
-    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
   data:
