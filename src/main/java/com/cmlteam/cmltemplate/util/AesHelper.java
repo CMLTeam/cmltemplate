@@ -12,6 +12,9 @@ import lombok.SneakyThrows;
  * same IV for decryption. It is common to prepend the IV to the ciphertext and retrieve when
  * required.
  *
+ * <p>CBC is more secure than ECB:
+ * https://www.ubiqsecurity.com/ecb-vs-cbc-block-cipher-mode-differences/
+ *
  * <ul>
  *   <li>https://en.wikipedia.org/wiki/Advanced_Encryption_Standard
  *   <li>https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation
