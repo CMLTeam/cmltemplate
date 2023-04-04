@@ -3,7 +3,6 @@ package com.cmlteam.cmltemplate.controllers;
 import com.cmlteam.cmltemplate.model.TestWsUser;
 import com.cmlteam.cmltemplate.services.SampleService;
 import io.swagger.annotations.ApiOperation;
-import jakarta.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -51,11 +50,5 @@ public class MainController {
     HashMap res = new HashMap();
     res.put("success", true);
     return res;
-  }
-
-  @ApiOperation(value = "Test POST endpoint with validation")
-  @PostMapping(value = "/user")
-  public UserResp testPost(@Valid @RequestBody UserReq userReq) {
-    return new UserResp(true);
   }
 }

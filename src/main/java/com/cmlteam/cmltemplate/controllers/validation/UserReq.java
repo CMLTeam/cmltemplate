@@ -1,4 +1,4 @@
-package com.cmlteam.cmltemplate.controllers;
+package com.cmlteam.cmltemplate.controllers.validation;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
