@@ -13,7 +13,7 @@ import lombok.SneakyThrows;
  */
 @RequiredArgsConstructor
 public class AesHelper {
-  private static final String transformation = "AES/CBC/PKCS5Padding";
+  private static final String transformation = "AES/ECB/PKCS5Padding";
   private static final String algorithm = "AES";
 
   private final byte[] keyBytes;

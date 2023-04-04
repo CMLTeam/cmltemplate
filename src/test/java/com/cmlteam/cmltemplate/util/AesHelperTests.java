@@ -17,6 +17,6 @@ public class AesHelperTests {
     byte[] result = aesHelper.decrypt(encrypted);
 
     // THEN
-    Assertions.assertEquals(inputBytes, result);
+    Assertions.assertEquals(input, new String(result, StandardCharsets.UTF_8));
   }
 }
