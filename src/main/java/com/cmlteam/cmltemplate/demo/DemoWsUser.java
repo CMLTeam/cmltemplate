@@ -1,4 +1,4 @@
-package com.cmlteam.cmltemplate.model;
+package com.cmlteam.cmltemplate.demo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class TestWsUser {
+public class DemoWsUser {
   private int id;
   private String name;
   private String email;

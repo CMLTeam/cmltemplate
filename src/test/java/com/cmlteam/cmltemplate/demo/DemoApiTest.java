@@ -1,7 +1,13 @@
-package com.cmlteam.cmltemplate;
+package com.cmlteam.cmltemplate.demo;
 
-import com.cmlteam.cmltemplate.controllers.MainController;
-import com.cmlteam.cmltemplate.services.SampleService;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.text.MatchesPattern.matchesPattern;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,21 +19,13 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.text.MatchesPattern.matchesPattern;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(MainController.class)
-@ContextConfiguration(classes = {SampleService.class, MainController.class})
-public class MainControllerTest {
+@WebMvcTest(DemoApi.class)
+@ContextConfiguration(classes = {DemoService.class, DemoApi.class})
+public class DemoApiTest {
   @Autowired private MockMvc mockMvc;
 
-  @MockBean private SampleService service;
+  @MockBean private DemoService service;
 
   @BeforeEach
   void setup() {

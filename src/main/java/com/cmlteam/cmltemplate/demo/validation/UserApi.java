@@ -1,4 +1,4 @@
-package com.cmlteam.cmltemplate.controllers.validation;
+package com.cmlteam.cmltemplate.demo.validation;
 
 import io.swagger.annotations.ApiOperation;
 import jakarta.validation.Valid;

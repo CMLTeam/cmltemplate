@@ -1,5 +1,8 @@
 package com.cmlteam.cmltemplate.config;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import javax.sql.DataSource;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.aop.interceptor.SimpleAsyncUncaughtExceptionHandler;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -15,10 +18,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
-
-import javax.sql.DataSource;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 @Configuration
 @EnableAutoConfiguration(exclude = {JacksonAutoConfiguration.class})

@@ -1,4 +1,4 @@
-package com.cmlteam.cmltemplate;
+package com.cmlteam.cmltemplate.demo.validation;
 
 import static com.cmlteam.cmltemplate.util.JsonUtil.json;
 import static org.hamcrest.Matchers.hasSize;
@@ -6,8 +6,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.cmlteam.cmltemplate.config.BadRequestErrorRenderer;
-import com.cmlteam.cmltemplate.controllers.MainController;
-import com.cmlteam.cmltemplate.controllers.validation.UserApi;
+import com.cmlteam.cmltemplate.demo.DemoApi;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(MainController.class)
+@WebMvcTest(DemoApi.class)
 @ContextConfiguration(classes = {UserApi.class, BadRequestErrorRenderer.class})
 public class BadRequestTests {
   @Autowired private MockMvc mockMvc;

@@ -1,7 +1,5 @@
-package com.cmlteam.cmltemplate.controllers;
+package com.cmlteam.cmltemplate.demo;
 
-import com.cmlteam.cmltemplate.model.TestWsUser;
-import com.cmlteam.cmltemplate.services.SampleService;
 import io.swagger.annotations.ApiOperation;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,9 +15,9 @@ import org.springframework.web.client.RestTemplate;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
-public class MainController {
+public class DemoApi {
 
-  private final SampleService sampleService;
+  private final DemoService demoService;
 
   @ApiOperation(value = "Test GET endpoint")
   @GetMapping(value = "test")
@@ -30,17 +28,17 @@ public class MainController {
   @GetMapping(value = "testws")
   public String testws() {
     RestTemplate template = new RestTemplate();
-    TestWsUser status =
+    DemoWsUser status =
         Objects.requireNonNull(
             template.getForObject(
-                "https://jsonplaceholder.typicode.com/users/1", TestWsUser.class));
+                "https://jsonplaceholder.typicode.com/users/1", DemoWsUser.class));
     return "" + status.getId();
   }
 
   @ApiOperation(value = "Show the DB version")
   @GetMapping(value = "testdb")
   public String testdb() {
-    return sampleService.getDbVersion();
+    return demoService.getDbVersion();
   }
 
   @ApiOperation(value = "Test POST endpoint")

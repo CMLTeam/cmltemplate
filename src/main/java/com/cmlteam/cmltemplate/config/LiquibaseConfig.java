@@ -1,5 +1,6 @@
 package com.cmlteam.cmltemplate.config;
 
+import javax.sql.DataSource;
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -8,8 +9,6 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
-
-import javax.sql.DataSource;
 
 /** The purpose here is to make Liquibase run AFTER Hibernate's hbm2ddl */
 @Configuration

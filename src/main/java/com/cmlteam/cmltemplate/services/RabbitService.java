@@ -1,14 +1,13 @@
 package com.cmlteam.cmltemplate.services;
 
 import com.cmlteam.cmltemplate.config.RabbitConfig;
+import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.PostConstruct;
 
 /** Sample service to demo RabbitMQ. */
 @Service
